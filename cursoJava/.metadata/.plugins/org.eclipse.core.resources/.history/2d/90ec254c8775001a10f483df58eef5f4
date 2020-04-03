@@ -1,0 +1,20 @@
+import javax.swing.JOptionPane;
+
+public class GameGuessTheNumber {
+
+	public static void main(String[] args) {
+		
+		String number = (String)(Math.random()*100+1);
+		
+		System.out.println(number);
+		
+		String check = "";
+		check = JOptionPane.showInputDialog("Juega, ¡SUERTE! \nIntroduce un número del 0 a 100");
+		int checkNumber = Integer.parseInt(check);
+		
+		while(checkNumber.equals(number) == false) {
+			
+		}
+	}
+
+}

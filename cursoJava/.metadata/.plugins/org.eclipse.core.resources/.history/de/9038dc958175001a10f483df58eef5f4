@@ -1,0 +1,17 @@
+import Javax.swing.*;
+
+public class AccecsApp {
+
+	public static void main(String[] args) {
+		
+		String check= "Balta";
+		
+		String password = "";
+		
+		while(check.equals(password)== false) {
+			
+		}
+
+	}
+
+}

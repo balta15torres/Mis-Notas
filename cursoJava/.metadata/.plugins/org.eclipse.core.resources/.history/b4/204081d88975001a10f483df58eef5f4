@@ -1,0 +1,46 @@
+import javax.swing.JOptionPane;
+
+public class GameGuessTheNumber {
+
+	public static void main(String[] args) {
+		
+		int number = (int)(Math.random()*100+1);
+		String checkNumber = Integer.toString(number);
+		
+		int numberBueno = Integer.parseInt(checkNumber);
+		
+		System.out.println(checkNumber);
+		
+		int inputNumber = 0;
+		
+		
+		int counter = 5; 
+		
+		while(inputNumber.equals(checkNumber) == false) {
+			
+			inputNumber = JOptionPane.showInputDialog("Juega, ¡SUERTE! \nIntroduce un número del 0 a 100 \nTe quedan " + counter + " intentos.");	
+		
+			if(inputNumber.equals(checkNumber) == false) {
+				
+				if(inputNumber > checkNumber) {
+					
+				}
+		
+				counter--;
+				System.out.println("Sigue probando!! \nllevas " + counter + " intentos!");
+				
+				if(counter == 0) {
+					 
+					System.out.println("Perdiste!! Hasta luego!!!");
+				}
+			
+			}
+			
+			
+		}
+		
+		System.out.println("Enorabuena!! Tu número es correcto");
+		
+	}
+
+}

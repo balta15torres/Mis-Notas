@@ -1,0 +1,34 @@
+import java.util.*;
+import javax.swing.*;
+
+public class Condicional {
+
+	public static void main(String[] args) {
+		
+		Scanner calculadora = new Scanner(System.in);
+		
+		System.out.println("Escribe el número correspondiente de la operacion que quieres realizar: \n"
+				+ "1.Sumar \n2.Restar \n3.Multiplicar \n4.Dividir");
+		
+		
+		
+		Scanner porteroDisco = new Scanner(System.in);
+		
+		System.out.println("Introduce tu edad:");
+		
+		int age = porteroDisco.nextInt();
+		
+		String result;
+		
+		if(age>=18) {
+			result = "Eres mayor de edad,puedes pasar. ¡¡PASALO BIEN!!";
+		}
+		else {
+			result = "Eres menor de edad, ¡¡PIRATE!!";
+		}
+		
+		System.out.println(result);
+		
+	}
+
+}

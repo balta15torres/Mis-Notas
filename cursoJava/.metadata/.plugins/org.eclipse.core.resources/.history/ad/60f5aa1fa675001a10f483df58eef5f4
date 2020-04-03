@@ -1,0 +1,18 @@
+
+public class arrays {
+
+	public static void main(String[] args) {
+		
+		int[][] nameArray = { {1,2},{1,2} };
+		
+		
+		
+		for(String elemt:array) {
+			
+			System.out.println(elemt);
+		}
+		
+		
+	}
+
+}

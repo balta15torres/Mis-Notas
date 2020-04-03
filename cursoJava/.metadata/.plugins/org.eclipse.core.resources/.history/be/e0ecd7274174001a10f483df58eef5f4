@@ -1,0 +1,12 @@
+
+public class FirstClass {
+	
+	public static void main(String args[]) {
+		
+		byte num = 8;
+		char letter = 'a';
+		
+		System.out.print(letter);
+	}
+
+}

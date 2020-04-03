@@ -1,0 +1,11 @@
+
+public class CalculationsMethods {
+	
+	public static void main(String[] args) {
+		
+		double raiz = Math.sqrt(9.8);
+		
+		System.out.println(raiz);
+		
+	}
+}

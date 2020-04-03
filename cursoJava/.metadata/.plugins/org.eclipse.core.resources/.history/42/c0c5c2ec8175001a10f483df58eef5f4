@@ -1,0 +1,25 @@
+import javax.swing.*;
+
+public class AccecsApp {
+
+	public static void main(String[] args) {
+		
+		String check= "Balta";
+		
+		String password = "";
+		
+		while(check.equals(password) == false) {
+			
+			password = JOptionPane.showInputDialog("Introduce la contraseña");
+			
+			if(check.equals(password) == false) {
+				System.out.println("Contraseña incorrecta, sigue probando");
+			}
+			
+			System.out.println("Contraseña correcta, Adelante!!!");
+			
+		}
+
+	}
+
+}

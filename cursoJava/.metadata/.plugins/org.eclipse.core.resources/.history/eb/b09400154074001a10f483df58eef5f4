@@ -1,0 +1,11 @@
+
+public class FirstClass {
+	
+	public static void main(String args[]) {
+		
+		byte num = 8;
+		
+		System.out.print(num);
+	}
+
+}

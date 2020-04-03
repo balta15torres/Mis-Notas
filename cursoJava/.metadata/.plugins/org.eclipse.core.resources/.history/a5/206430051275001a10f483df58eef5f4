@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import javax.swing.*;
+
+public class Calculadora {
+
+	public static void main(String[] args) {
+		
+			Scanner calculadora = new Scanner(System.in);
+		
+			System.out.println("Escribe el número correspondiente de la operacion que quieres realizar: \n"
+				+ "1.Sumar \n2.Restar \n3.Multiplicar \n4.Dividir");
+		
+			int operacion = calculadora.nextInt();
+			
+			System.out.println("Dime el primer Número");
+			
+			int primerNumero = calculadora.nextInt();
+			
+			System.out.println("Dime el segundo Número");
+			
+			int segundoNumero = calculadora.nextInt();
+			
+			switch(operacion) {
+			case 1 :
+				String sumar1 = JOptionPane.showInputDialog("Dime el primer Número");
+				String sumar2 = JOptionPane.showInputDialog("Dime el segundo Número");
+				int newAge = Integer.parseInt(age);
+				newAge++;
+				break;
+			case 2 : 
+				String restar1 = JOptionPane.showInputDialog("Dime el primer Número");
+				String restar2 = JOptionPane.showInputDialog("Dime el segundo Número");
+				int newAge = Integer.parseInt(age);
+				newAge++;
+				break;
+			case 3 : 
+				String multiplicar1 = JOptionPane.showInputDialog("Dime el primer Número");
+				String multiplicar2 = JOptionPane.showInputDialog("Dime el segundo Número");
+				int newAge = Integer.parseInt(age);
+				newAge++;
+				break;
+			case 4 : 
+				String dividir1 = JOptionPane.showInputDialog("Dime el primer Número");
+				String dividir2 = JOptionPane.showInputDialog("Dime el segundo Número");
+				int newAge = Integer.parseInt(age);
+				newAge++;
+				break;
+				
+			}
+
+	}
+
+}

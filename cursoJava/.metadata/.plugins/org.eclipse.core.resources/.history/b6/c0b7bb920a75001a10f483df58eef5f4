@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Condicional {
+
+	public static void main(String[] args) {
+		
+		Scanner porteroDisco1 = new Scanner(System.in);
+		
+		System.out.println("Introduce tu Lenguaje favorito:");
+		
+		int age = porteroDisco1.nextInt();
+		
+		String result;
+			
+		
+		
+	}
+
+}

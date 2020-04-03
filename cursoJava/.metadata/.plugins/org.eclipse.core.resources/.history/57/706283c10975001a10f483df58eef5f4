@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Condicional {
+
+	public static void main(String[] args) {
+		
+		Scanner porteroDisco1 = new Scanner(System.in);
+		
+		System.out.println("Introduce tu edad:");
+		
+		int age = porteroDisco1.nextInt();
+		
+		String result;
+		boolean menor = age<18; 
+		boolean novato = age>18;		
+		switch(age){
+		case menor:
+			result = "PIRATE";
+			break;
+		case novato:
+			result = "PASA";
+			break;
+		}
+		
+	}
+
+}

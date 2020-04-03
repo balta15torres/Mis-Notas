@@ -1,0 +1,42 @@
+import javax.swing.*;
+
+public class AccecsApp {
+
+	public static void main(String[] args) {
+		
+		String user = "";
+		user = JOptionPane.showInputDialog("REGISTRO: \nIntroduce nombre del usuario");
+		
+		String check = "";
+		check = JOptionPane.showInputDialog("REGISTRO: \nIntroduce la contraseña");
+		
+		String name = "";
+		
+		while(name.equals(user) == false) {
+			
+			name = JOptionPane.showInputDialog("LOGIN: \nIntroduce nombre del usuario");
+			
+			if(name.equals(user) == false) {
+				System.out.println("LOGIN: \nIntroduce nombre del usuario incorrecto");
+			}
+			
+			System.out.println("LOGIN: \nNombre del usuario correcto, ahora vamos con la contraseña");
+			
+		}
+		String password = "";
+		
+		while(password.equals(check) == false) {
+			
+			password = JOptionPane.showInputDialog("LOGIN: \nIntroduce la contraseña");
+			
+			if(password.equals(check) == false) {
+				System.out.println("LOGIN: \nContraseña incorrecta");
+			}
+			
+			System.out.println("LOGIN: \nContraseña correcta, Adelante!!!");
+			
+		}
+
+	}
+
+}

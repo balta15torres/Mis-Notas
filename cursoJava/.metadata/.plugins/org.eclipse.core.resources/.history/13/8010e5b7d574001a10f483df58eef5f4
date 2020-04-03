@@ -1,0 +1,43 @@
+
+public class StringMethods {
+
+	public static void main(String[] args) {
+		
+		String name = "Baltasar";
+		String surname = "Torres";
+		
+		System.out.println(name + " " + surname);
+
+		System.out.println(name.length());
+		
+		Boolean result;
+		
+		result = name.equalsIgnoreCase(surname);
+		
+		System.out.println(result);
+		
+		//ultima letra de name 
+		 int indexUltLetter = name.length();
+		 char ultLetter = name.charAt(indexUltLetter-1);
+		 
+		 System.out.println(ultLetter);
+
+		 //2primeras letras de surname
+		 
+		 //System.out.println(surname.substring(0,2));
+		 
+		 //Todas las letras de surname menos primera y ultima
+		 
+		 int length = surname.length();
+		 char primera = surname.charAt(length+1);
+		 //int ultimaLetter = surname.charAt(length-1);
+		 
+		 //String resultado = surname.substring(primera,5);
+		 
+		 
+		 System.out.println(primera);
+		 
+		
+	}
+
+}

@@ -1,0 +1,22 @@
+import javax.swing.*;
+
+public class PesoIdeal {
+
+	public static void main(String[] args) {
+		
+		String genero = "";
+		
+		
+
+		do {
+	
+			genero = JOptionPane.showInputDialog("Introduce tu género (H/M)");
+		
+		}while(genero.equalsIgnoreCase("H") == false && genero.equalsIgnoreCase("M")==false);
+	
+		int altura = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu altura en cm"));
+	
+	
+	}
+
+}

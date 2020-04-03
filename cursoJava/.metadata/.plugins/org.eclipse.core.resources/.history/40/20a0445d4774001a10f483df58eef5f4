@@ -1,0 +1,30 @@
+
+public class FirstClass {
+	
+	public static void main(String args[]) {
+		
+		//variables
+		int num = 8;
+		final int num1 = 2;
+		int result;
+		
+		result = num + num1;
+		
+		char letter1 = 'a';
+	
+		
+		
+		
+		
+		
+		
+		int superResul = result+=result;
+		
+		//constante
+		final char letter2 = 'b';
+		
+		System.out.println(result);
+	}
+
+}
+

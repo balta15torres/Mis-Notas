@@ -1,0 +1,41 @@
+import java.util.*;
+import javax.swing.*;
+
+public class Condicional {
+
+	public static void main(String[] args) {
+		
+		//Scanner TablasDeMultiplicar = new Scanner(System.in);
+		
+		String tabla = JOptionPane.showInputDialog("Dime que tabla de Múltiplicar");
+		String numero = JOptionPane.showInputDialog("Dime número Múltiplicar por la tabla escojida anteriormente");
+		
+		int newTabla = Integer.parseInt(tabla);
+		int newNumero = Integer.parseInt(tabla);
+		
+		
+		
+		System.out.println("Introduce tu edad:");
+		
+		
+		
+		Scanner porteroDisco = new Scanner(System.in);
+		
+		System.out.println("Introduce tu edad:");
+		
+		int age = porteroDisco.nextInt();
+		
+		String result;
+		
+		if(age>=18) {
+			result = "Eres mayor de edad,puedes pasar. ¡¡PASALO BIEN!!";
+		}
+		else {
+			result = "Eres menor de edad, ¡¡PIRATE!!";
+		}
+		
+		System.out.println(result);
+		
+	}
+
+}

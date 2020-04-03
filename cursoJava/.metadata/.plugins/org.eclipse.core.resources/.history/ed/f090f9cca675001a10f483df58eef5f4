@@ -1,0 +1,25 @@
+
+public class arrays {
+
+	public static void main(String[] args) {
+		
+		int[][] array = { {1,2},{1,2} };
+		
+		
+		
+		for(int[]column:array) {
+			
+			System.out.print();
+			
+			for(int file:column) {
+				
+				System.out.print(file + " ");
+			
+			}
+			
+		}
+		
+		
+	}
+
+}

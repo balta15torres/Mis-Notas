@@ -1,0 +1,23 @@
+
+public class arrays {
+
+	public static void main(String[] args) {
+		
+		int[][] nameArray = { {1,2},{1,2} };
+		
+		
+		/*for(int i = 0;i<array.length;i++){
+		
+			System.out.println(array[i]);
+		}
+		*/
+		
+		/*for(String elemt:array) {
+			
+			System.out.println(elemt);
+		}
+		*/
+		System.out.println(nameArray[0].length);
+	}
+
+}
