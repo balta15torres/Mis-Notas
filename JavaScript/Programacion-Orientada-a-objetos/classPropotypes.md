@@ -1,3 +1,7 @@
+# Class y Prototype JavaScript
+
+## Class JavaScrip
+```
 class Film {
   constructor(name, id) {
     this.name = name;
@@ -20,9 +24,9 @@ class Series extends Film {
   }
 }
 const seriesOne = new Series("Breaking Bad", Math.random(), 1);
-
-//////////////////////////////////////////////////////////////////////////////
-
+```
+## Prototypes
+```
 function Animal() {}
 Animal.prototype = {
   constructor: Animal,
@@ -36,3 +40,4 @@ Dog.prototype = Object.create(Animal.prototype);
 
 let beagle = new Dog();
 console.log(beagle.eat());
+```

@@ -287,37 +287,3 @@ duplicateEncode("recedder")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//const result = [];
-//for (var i = 0; i < sectors.length; i++) {
-//     for (var j = 0; j < nameSectorsJson.length; j++) {
-//         if(nameSectorsJson[j]['sector'] === nameSectorsJson[j]['sector'])
-//         console.log(nameSectorsJson[j])
-//
-// sectors[i]['advertisements'] = nameSectorsJson[j]['advertisements'].amount }
-//    result.push(sectors[i]);
-//}
-
-
-
-
-
-
-
-
-
-
