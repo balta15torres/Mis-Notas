@@ -1,4 +1,4 @@
-#EventBus
+# EventBus
 Es un eventos incorporado de Vue para comunicar eventos entre componentes(hijos) o que no estan relacionados entre si.
 
 ## Inicializando
