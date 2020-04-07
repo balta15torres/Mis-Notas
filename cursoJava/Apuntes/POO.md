@@ -31,14 +31,18 @@ Un programa creado en Java, es un grupo de clases unidas entre si de alguna form
 
 - Objeto: Es un ejemplar perteneciente a una clase. Un obejeto contiene propiedades ó atributos y comportamientos.
 
-> Para acceder a una propiedad ó comportamiento (metodo) de un Objeto se hace con " . " 
-> Ejemplos:
->
-> propiedad = coche.color = "verde";
->
-> metodo = coche.arranca();
+Para acceder a una propiedad ó comportamiento (metodo) de un Objeto se hace con " . " 
 
-Una Clase contiene un método constructor, es un método especial que se encarga de dar un estado inicial al Objeto.La caracteristica de este método es que siempre tiene que tener el mismo nombre que el de la Clase.
+Ejemplos:
+- propiedad:
+```
+ coche.color = "verde";
+```
+- metodo:
+ ```
+ coche.arranca();
+```
+> Una Clase contiene un **MÉTODO CONSTRUCTOR**, es un método especial que se encarga de dar un estado inicial al Objeto.La caracteristica de este método es que siempre tiene que tener el mismo nombre que el de la Clase.
 
 Ejemplo:
 ```
@@ -135,7 +139,6 @@ public String getRuedas() {
 		
 }
 ````
-
 - Setters o definidores:
     - Se encarga de definir o modificar el valor de una propiedad de un Objeto.
     - Este método no devuelve un valor y una de las caracteristicas para saber que no devuelve un valor y por lo tanto es
@@ -149,5 +152,36 @@ public void setRuedas() {
     ruedas = 4;
 	
 }
-
 ````
+## Static
+
+Es una palabra reservada, que se puede aplicar a constantes, variables y métodos. Cuando se aplica quiere decir que esa varible,
+ constante ó método se convierte en una propiedad más de la clase en la que la estamos aplicando.
+ 
+- Variable Static: 
+
+Cuando se declara una variable static todos lo objetos comparte esta varible, pero no pertenece a ningun objeto si no a la clase.
+```
+private static int idSig = 1;
+```
+- Método Static:
+    - Caracteristicas:
+        - No actuan sobre objetos.Al igual la varible static, si declaramos un método static no pertenece a ningun objeto, 
+        si no que pertenece a la clase y esto tiene la particularidad que a la hora de llamar al método no podemos utilizarlo 
+        en ningun objeto perteneciente a la clase, entonces deberiamos utilizar el nombre de la clase.
+        
+        - No acceden a campos de la instancia(ejemplar) como variables,constantes declaradas en la clase, a menos que sean Static también.
+        
+        - Para llamadas primero accemos referencia a la clase que pertenece y acontinuacion el nombre que le hemos dado al Método Static
+
+Ejemplo de declaración del Método Static:
+```
+public static String getIdSig() {
+	return "El Id siguiente es: " + idSig; 
+}
+```
+Ejemplo de llamada al Método Static:
+```
+NombreDeLaClase.getIdSig();
+```
+
