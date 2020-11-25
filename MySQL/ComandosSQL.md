@@ -1,6 +1,7 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
+~~~
 Base de datos
 * [Mostrar](#item1)
 * [Crear](#item2)
@@ -13,7 +14,7 @@ Tablas
 * [Mostrar estructura](#item7)
 * [Agregar](#item8)
 * [Mostrar registro](#item9)
-
+~~~
 ## Base de datos
 <a name="item1"></a>
 ### Mostrar base de datos existentes: 
