@@ -37,7 +37,7 @@ drop database nombre_db;
 ```
 show tables;    
 ```
-[Subir](#top)
+[Ir al indice](#top)
 <a name="item5"></a>
 ### Crear una tabla: 
 Debemos resolver qué campos (columnas) tendrá y que tipo de datos almacenarán cada uno de ellos, es 
@@ -49,7 +49,7 @@ create table nombre_tabla (
     clave varchar(10)
 );
 ```
-[Subir](#top)
+[Ir al indice](#top)
 <a name="item6"></a>
 ### Eliminar una tabla:
 ```
@@ -59,14 +59,14 @@ Podemos pordemos especificar que elimine la tabla si existe:
 ```
 drop table if exists nombre_tabla;
 ```
-[Subir](#top)
+[Ir al indice](#top)
 <a name="item7"></a>
 ### Mostrar la estructura de una tabla:
 ```
 describe nombre_tabla;
 ```
 Muestra cada campo, su tipo, lo que ocupa en bytes y otros datos como la aceptación de valores nulos etc...
-[Subir](#top)
+[Ir al indice](#top)
 <a name="item8"></a>
 ### Agregar un registro a la tabla:                           
 ```
@@ -74,7 +74,7 @@ insert into nombre_tabla (nombre, clave) values ('Baltasar','Balta');
 ```
 Es importante ingresar los valores en el mismo orden en que se nombran los campos.Los campos de cadenas de caracteres se
  colocan entre comillas simples.
-[Subir](#top)
+[Ir al indice](#top)
  <a name="item9"></a>
 ### Mostrar Registros de una tabla:
 ```
@@ -95,4 +95,4 @@ select nombre, clave from nombre_tabla where nombre='Baltasar';
 Para las condiciones se utilizan operadores relacionales (Operadores Relacionales).
 
 Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresRelacionales.md)).
-[Subir](#top)
+[Ir al indice](#top)
