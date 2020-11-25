@@ -1,20 +1,15 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-~~~
-Base de datos
-* [Mostrar](#item1)
-* [Crear](#item2)
-* [Borrar](#item3)
-
-Tablas
-* [Mostrar tabla](#item4)
-* [Crear](#item5)
-* [Eliminar](#item6)
-* [Mostrar estructura](#item7)
-* [Agregar](#item8)
-* [Mostrar registro](#item9)
-~~~
+|Base de datos    |Tablas|
+|-----------------|---|
+|[Mostrar](#item1)|[Mostrar tabla](#item4)|
+|[Crear](#item2)  |[Crear](#item5)|
+|[Borrar](#item3) |[Eliminar](#item6)|
+|                 |[Mostrar estructura](#item7)|
+|                 |[Agregar](#item8)|
+|                 |[Mostrar registro](#item9)|
+---
 ## Base de datos
 <a name="item1"></a>
 ### Mostrar base de datos existentes: 
