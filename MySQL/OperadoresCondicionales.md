@@ -33,28 +33,22 @@ select titulo,autor,editorial,precio from libros where precio<=30;
 Existen otros que simplifican algunas consultas:
 - between: significa "entre". Averiguamos si el valor de un campo dado está entre los valores mínimo y máximo especificados.
  ````
-where precio>=20 and precio<=40;
- ````
-Este caso es igual que este otro:
-````
+select * from libros where precio between 20 and 40;
+
 select * from libros where precio>=20 and precio<=40;
 ````
 
 - in: Con "in" averiguamos si el valor de un campo dado está incluido en la lista de valores especificada.
 ````           
 select * from libros where autor in('Borges','Paenza');
-````           
-Este caso es igual que este otro:
-````
+
 select * from libros where autor='Borges' or autor='Paenza';
 ````
 Tambien con "in" averiguamos si el valor del campo está incluido en la lista, con "not" antecediendo la condición, 
 invertimos el resultado.
 ````
 select * from libros where autor not in ('Borges','Paenza');
-````
-Este caso es igual que este otro:
-````
+
 select * from libros where autor<>'Borges' and autor<>'Paenza';
 ````
 
