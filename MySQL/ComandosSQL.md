@@ -1,42 +1,41 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos      |Tablas|
-|-------------------|------|
-|[Mostrar](#mostrar-base-de-datos-existentes)  |[Mostrar tabla](#item4)|
-|[Crear](#item2)    |[Crear](#item5)|
-|[Eliminar](#item3) |[Eliminar](#item6)|
-|                   |[Mostrar estructura](#item7)|
-|                   |[Agregar](#item8)|
-|                   |[Mostrar registro](#item9)|
-|                   |[Eliminar registro](#item10)|
-|                   |[Modificar registros](#item11)|
+|Base de datos |Tablas|
+|--------------|------|
+|[Mostrar](#mostrar-base-de-datos-existentes)|[Mostrar tabla](#mostrar-las-tablas-existentes-de-la-base-de-datos)|
+|[Crear](#crear-una-base-de-datos)           |[Crear](#crear-una-tabla)|
+|[Eliminar](#eliminar-una-base-de-datos)     |[Eliminar](#eliminar-una-tabla)|
+|                                            |[Mostrar estructura](#mostrar-la-estructura-de-una-tabla)|
+|                                            |[Agregar](#agregar-un-registro-a-la-tabla)|
+|                                            |[Mostrar registro](#mostrar-registros-de-una-tabla)|
+|                                            |[Eliminar registro](#eliminar-registros-de-una-tabla)|
+|                                            |[Modificar registros](#modificar-registros-de-una-tabla)|
 ---
 ## Base de datos
-<a name="item1"></a>
 ### Mostrar base de datos existentes: 
 ```
 show databases;
 ```
-<a name="item2"></a>
+
 ### Crear una base de datos:
 ```
 create database nombre_db;
 ```
-<a name="item3"></a>
+
 ### Eliminar una base de datos:
 ```
 drop database nombre_db;
 ```
 
 ## Tablas
-<a name="item4"></a>
+
 ### Mostrar las tablas existentes de la base de datos:
 ```
 show tables;    
 ```
 [Ir al indice](#top)
-<a name="item5"></a>
+
 ### Crear una tabla: 
 Debemos resolver qué campos (columnas) tendrá y que tipo de datos almacenarán cada uno de ellos, es 
 decir, su estructura.La tabla debe ser definida con un nombre que la identifique y con el cual accederemos a ella.
@@ -48,7 +47,7 @@ create table nombre_tabla (
 );
 ```
 [Ir al indice](#top)
-<a name="item6"></a>
+
 ### Eliminar una tabla:
 ```
 drop table nombre_tabla;
@@ -58,7 +57,7 @@ Podemos pordemos especificar que elimine la tabla si existe:
 drop table if exists nombre_tabla;
 ```
 [Ir al indice](#top)
-<a name="item7"></a>
+
 ### Mostrar la estructura de una tabla:
 ```
 describe nombre_tabla;
@@ -66,7 +65,7 @@ describe nombre_tabla;
 Muestra cada campo, su tipo, lo que ocupa en bytes y otros datos como la aceptación de valores nulos etc...
 
 [Ir al indice](#top)
-<a name="item8"></a>
+
 ### Agregar un registro a la tabla:                           
 ```
 insert into nombre_tabla (nombre, clave) values ('Baltasar','Balta');
@@ -75,7 +74,7 @@ Es importante ingresar los valores en el mismo orden en que se nombran los campo
  colocan entre comillas simples.
 
 [Ir al indice](#top)
- <a name="item9"></a>
+
 ### Mostrar registros de una tabla:
 ```
 select nombre,clave from nombre_tabla;
@@ -95,7 +94,6 @@ Para las condiciones se utilizan operadores relacionales([Operadores Relacionale
 
 [Ir al indice](#top)
 
-<a name="item10"></a>
 ### Eliminar registros de una tabla:
 ````
 delete from nombre_tabla;
@@ -112,7 +110,7 @@ puede almacenar los valores 1 (activa) y 0 (desactiva). Cuando tiene el valor 1 
 produce un error debido a que la variable 'SQL_SAFE_UPDATES' tiene el valor 1.
 
 Para resolver este problema debemos encerrar todo el bloque donde ejecutamos los comandos delete cambiando el esta de la 
-variable 'SQL_SAFE_UPDATES' ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#primaryKey) :
+variable 'SQL_SAFE_UPDATES' ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria) :
 ````
 set SQL_SAFE_UPDATES=0;
 
@@ -126,7 +124,6 @@ select @@sql_safe_updates;
 ````
 [Ir al indice](#top)
 
-<a name="item11"></a>
 ### Modificar registros de una tabla:
 Para modificar uno o varios datos de uno o varios registros utilizamos "update" (actualizar).
 ````
@@ -144,6 +141,6 @@ También se puede actualizar varios campos en una sola instrucción:
 update nombre_tabla set nombre='Balta', clave='esteDiferente2' where nombre='Baltasar';
 ````
 Igual al concepto de borrado cuando utilizamos el comando 'update' la varible 'SQL_SAFE_UPDATES' debe encontrarse con 
-valor 1 (activa) ó ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#primaryKey).
+valor 1 (activa) ó ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria).
 
 [Ir al indice](#top)

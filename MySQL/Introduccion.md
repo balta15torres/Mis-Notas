@@ -32,7 +32,6 @@ Cada campo (columna) también debe definir el tipo de dato que almacenará.
 ## ¿Que es un registro?
 Un registro es una fila de la tabla que contiene los datos propiamente dichos. Cada registro tiene un dato por cada columna.
 
-<a name="primaryKey"></a>
 ## ¿Que es una clave primaria? 
 Una clave primaria es un campo (o varios) que identifica 1 solo registro (fila) en una tabla.
 
