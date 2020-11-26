@@ -2,6 +2,17 @@
 
 Una tabla organiza los datos en columnas y filas; cada columna es un campo (o atributo) y cada fila, un registro. 
 
+<a name="top"></a>
+## Índice de contenidos
+### Tipos de datos
+|Tipo de dato Texto|Tipo de dato Numeros|Tipo de dato Fechas y horas |Otros tipos de datos|Tipo de dato null|
+|---------------------------|-------------------------------------------|----------------------------------------------|------------------------------------|--------------------------|
+|[varchar](#varcharx)       |[integer ó int](#integerx-ó-intx)          |[fechas y horas](#tipo-de-dato-fechas-y-horas)|[otros datos](#otros-tipos-de-datos)|[null](#tipo-de-dato-null)|
+|[char](#charx)             |[Subtipos integer](#subtipos)              |                                              |                                    |                          |
+|[blob o text](#blob-o-text)|[float](#float)                            |                                              |                                    |                          |
+|                           |[decimal ó numeric](#decimaltd-ó-numerictd)|                                              |                                    |                          |
+---
+
 ## Tipos de datos de un campo (columna)
 
 ### Tipo de dato Texto
