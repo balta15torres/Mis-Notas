@@ -35,7 +35,7 @@ Un registro es una fila de la tabla que contiene los datos propiamente dichos. C
 ## ¿Que es una clave primaria? 
 Una clave primaria es un campo (o varios) que identifica 1 solo registro (fila) en una tabla.
 
-Para un valor del campo clave existe solamente 1 registro. Los valores no se repiten ni pueden ser nulos.
+Para un valor del campo clave existe solamente 1 registro. Los valores no se repiten ni pueden ser [nulos](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/EstructuraTabla.md#valores-null-en-un-campo-columna).
 
 Establecemos que un campo sea clave primaria al momento de creación de la tabla:
 ````

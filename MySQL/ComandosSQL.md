@@ -122,6 +122,15 @@ Podemos saber el estado global de la variable 'SQL_SAFE_UPDATES' mediante la con
 ````
 select @@sql_safe_updates;
 ````
+También podemos eliminar todos los registros de una tabla con "truncate table".
+````
+truncate table nombre_tabla;
+````
+La diferencia con "delete" es la velocidad, es más rápido "truncate table" ya que "delete" borra los registros uno a uno.
+Otra diferencia es cuando la tabla tiene un campo "auto_increment", al borrar con "delete" y luego ingresar un registro, 
+al cargarse el valor en el campo autoincrementable, continúa con la secuencia; si usamos "truncate table", al ingresar 
+otra vez un registro, la secuencia del campo autoincrementable vuelve a iniciarse en 1.
+
 [Ir al indice](#top)
 
 ### Modificar registros de una tabla:
