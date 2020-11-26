@@ -32,4 +32,17 @@ Cada campo (columna) también debe definir el tipo de dato que almacenará.
 ## ¿Que es un registro?
 Un registro es una fila de la tabla que contiene los datos propiamente dichos. Cada registro tiene un dato por cada columna.
 
+<a name="primaryKey"></a>
+## ¿Que es una clave primaria? 
+Una clave primaria es un campo (o varios) que identifica 1 solo registro (fila) en una tabla.
 
+Para un valor del campo clave existe solamente 1 registro. Los valores no se repiten ni pueden ser nulos.
+
+Establecemos que un campo sea clave primaria al momento de creación de la tabla:
+````
+ create table usuarios (
+  nombre varchar(20),
+  clave varchar(10),
+  primary key(nombre)
+ );
+````

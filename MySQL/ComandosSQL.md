@@ -1,14 +1,16 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos    |Tablas|
-|-----------------|---|
-|[Mostrar](#item1)|[Mostrar tabla](#item4)|
-|[Crear](#item2)  |[Crear](#item5)|
-|[Borrar](#item3) |[Eliminar](#item6)|
-|                 |[Mostrar estructura](#item7)|
-|                 |[Agregar](#item8)|
-|                 |[Mostrar registro](#item9)|
+|Base de datos      |Tablas|
+|-------------------|------|
+|[Mostrar](#item1)  |[Mostrar tabla](#item4)|
+|[Crear](#item2)    |[Crear](#item5)|
+|[Eliminar](#item3) |[Eliminar](#item6)|
+|                   |[Mostrar estructura](#item7)|
+|                   |[Agregar](#item8)|
+|                   |[Mostrar registro](#item9)|
+|                   |[Eliminar registro](#item10)|
+|                   |[Modificar registros](#item11)|
 ---
 ## Base de datos
 <a name="item1"></a>
@@ -22,7 +24,7 @@ show databases;
 create database nombre_db;
 ```
 <a name="item3"></a>
-### Borrar una base de datos:
+### Eliminar una base de datos:
 ```
 drop database nombre_db;
 ```
@@ -62,6 +64,7 @@ drop table if exists nombre_tabla;
 describe nombre_tabla;
 ```
 Muestra cada campo, su tipo, lo que ocupa en bytes y otros datos como la aceptación de valores nulos etc...
+
 [Ir al indice](#top)
 <a name="item8"></a>
 ### Agregar un registro a la tabla:                           
@@ -70,9 +73,10 @@ insert into nombre_tabla (nombre, clave) values ('Baltasar','Balta');
 ```
 Es importante ingresar los valores en el mismo orden en que se nombran los campos.Los campos de cadenas de caracteres se
  colocan entre comillas simples.
+
 [Ir al indice](#top)
  <a name="item9"></a>
-### Mostrar Registros de una tabla:
+### Mostrar registros de una tabla:
 ```
 select nombre,clave from nombre_tabla;
 ```
@@ -91,4 +95,58 @@ select nombre, clave from nombre_tabla where nombre='Baltasar';
 Para las condiciones se utilizan operadores relacionales (Operadores Relacionales).
 
 Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresRelacionales.md)).
+
+[Ir al indice](#top)
+
+<a name="item10"></a>
+### Eliminar registros de una tabla:
+````
+delete from nombre_tabla;
+````
+La ejecución del comando indicado en la línea anterior borra TODOS los registros de la tabla.
+
+Si queremos eliminar uno o varios registros debemos indicar cuál o cuáles, para ello utilizamos el comando "delete" 
+junto con la clausula "where" con la cual establecemos la condición que deben cumplir los registros a borrar.
+````
+delete from nombre_tabla where nombre='Leonardo';
+````
+Para evitar borrados masivos por equivocación en MySQL hay una variable de configuración llamada SQL_SAFE_UPDATES que 
+puede almacenar los valores 1 (activa) y 0 (desactiva). Cuando tiene el valor 1 no permite ejecutar comandos delete y se 
+produce un error debido a que la variable 'SQL_SAFE_UPDATES' tiene el valor 1.
+
+Para resolver este problema debemos encerrar todo el bloque donde ejecutamos los comandos delete cambiando el esta de la 
+variable 'SQL_SAFE_UPDATES' ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#primaryKey) :
+````
+set SQL_SAFE_UPDATES=0;
+
+delete from nombre_tabla;
+
+set SQL_SAFE_UPDATES=1;
+````
+Podemos saber el estado global de la variable 'SQL_SAFE_UPDATES' mediante la consulta:
+````
+select @@sql_safe_updates;
+````
+[Ir al indice](#top)
+
+<a name="item11"></a>
+### Modificar registros de una tabla:
+Para modificar uno o varios datos de uno o varios registros utilizamos "update" (actualizar).
+````
+update nombre_tabla set clave='todosIguales';
+````
+Utilizamos "update" junto al nombre de la tabla y "set" junto con el campo a modificar y su nuevo valor.
+
+El cambio afectará a todos los registros.Podemos modificar algunos registros, para ello debemos establecer condiciones 
+de selección con "where".
+````
+update nombre_tabla set clave='esteDiferente' where nombre='Baltasar';
+````
+También se puede actualizar varios campos en una sola instrucción:
+````
+update nombre_tabla set nombre='Balta', clave='esteDiferente2' where nombre='Baltasar';
+````
+Igual al concepto de borrado cuando utilizamos el comando 'update' la varible 'SQL_SAFE_UPDATES' debe encontrarse con 
+valor 1 (activa) ó ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#primaryKey).
+
 [Ir al indice](#top)
