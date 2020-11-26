@@ -3,14 +3,15 @@
 ## Índice de contenidos
 |Base de datos |Tablas|
 |--------------|------|
-|[Mostrar](#mostrar-base-de-datos-existentes)|[Mostrar tabla](#mostrar-las-tablas-existentes-de-la-base-de-datos)|
-|[Crear](#crear-una-base-de-datos)           |[Crear](#crear-una-tabla)|
-|[Eliminar](#eliminar-una-base-de-datos)     |[Eliminar](#eliminar-una-tabla)|
-|                                            |[Mostrar estructura](#mostrar-la-estructura-de-una-tabla)|
-|                                            |[Agregar](#agregar-un-registro-a-la-tabla)|
-|                                            |[Mostrar registro](#mostrar-registros-de-una-tabla)|
-|                                            |[Eliminar registro](#eliminar-registros-de-una-tabla)|
-|                                            |[Modificar registros](#modificar-registros-de-una-tabla)|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)|
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)|
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)|
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)|
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)|
+|                                                  |[Cláusula order by](#cláusula-order-by-del-select)|
+|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)|
+|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)|
 ---
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -90,7 +91,43 @@ ciertas condiciones indicadas con la cláusula "where".
 ```
 select nombre, clave from nombre_tabla where nombre='Baltasar';
 ```
-Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresRelacionales.md)).
+Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresCondicionales.md)).
+
+#### Cláusula order by del select
+Podemos ordenar el resultado de un "select" para que los registros se muestren ordenados por algún campo, para ello usamos la cláusula "order by".
+
+Tenemos varias opciones en el ordenado:
+- alfabéticamente: 
+````
+select codigo,titulo,autor,editorial,precio from libros order by titulo;
+````
+Aparecen los registros ordenados alfabéticamente por el campo especificado.
+
+- orden del campo:  
+````
+select codigo,titulo,autor,editorial,precio from libros order by 5;
+````
+Podemos colocar el número de orden del campo por el que queremos que se ordene en lugar de su nombre. Por ejemplo, 
+queremos el resultado del "select" ordenado por "precio":
+ 
+- ordenar por varios campos:
+````
+select codigo,titulo,autor,editorial,precio from libros order by titulo, editorial;
+````
+ Incluso, podemos ordenar en distintos sentidos, por ejemplo, por "titulo" en sentido ascendente y "editorial" en sentido 
+ descendente:
+ ````
+select codigo,titulo,autor,editorial,precio from libros order by titulo asc, editorial desc;
+ ````
+Debe aclararse al lado de cada campo, pues estas palabras claves afectan al campo inmediatamente anterior.
+ 
+**¡¡Por defecto ordena de manera ascendente (de menor a mayor)!!**
+- de mayor a menor:
+````
+select codigo,titulo,autor,editorial,precio from libros order by editorial desc;
+
+````
+Para ello agregamos la palabra clave "desc".
 
 [Ir al indice](#top)
 

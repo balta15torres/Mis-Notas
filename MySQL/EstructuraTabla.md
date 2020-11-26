@@ -15,7 +15,12 @@ Una tabla organiza los datos en columnas y filas; cada columna es un campo (o at
 |-----------------------------------------------------------|---------------------------------------------------|
 |[por defecto](#valores-por-defecto-en-un-campo-columna)    |[inválidos](#valores-inválidos-en-un-campo-columna)|
 |[atributo default](#atributo-default-en-un-campo-columna)  |                                                   |
-|[atributo zerofill](#atributo-zerofill-en-un-campo-columna)|                                                   |
+|[atributo zerofill](#atributo-zerofill-en-un-campo-columna)|                                                  |
+
+|Calculos en columna                      |
+|-----------------------------------------|
+|[calculos](#calculos-en-un-campo-columna)|
+
 ---
 
 ## Tipos de datos de un campo (columna)
@@ -195,7 +200,7 @@ no aceptan valores nulos.
 
 Para que un campo no permita valores nulos debemos especificarlo luego de definir el campo, agregando "not null". Por 
 defecto, los campos permiten valores nulos.Para recuperar los registros que contengan el valor "null" en el campo no 
-podemos utilizar los [Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresRelacionales.md), 
+podemos utilizar los [Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresCondicionales.md), 
 utilizar los operadores "is null" (es igual a null) y "is not null" (no es null):
 ````
 select * from libros where precio is null;
@@ -323,6 +328,21 @@ fecha					fuera de rango				0000-00-00
 fecha					'20-07-2006' (otro orden)		0000-00-00
 hora					fuera de rango				límite más cercano
 fecha y hora not null			null					error
+````
+
+[Ir al indice](#índice-de-contenidos)
+
+## Calculos en un campo (columna)
+Es posible obtener salidas en las cuales una columna sea el resultado de un cálculo y no un campo de una tabla.
+
+Tendremos que añadir la operación en la sentencia y MySQL realiza el cálculo y lo incluye en una columna extra en la 
+salida.Esta columna extra no se guarda en la tabla será provisional.
+````
+ select titulo, precio,cantidad,precio*cantidad from libros;
+````
+También podemos enlazar operaciones en la sentencia.
+````
+ select titulo, precio,precio*0.1,precio-(precio*0.1) from libros;
 ````
 
 [Ir al indice](#índice-de-contenidos)
