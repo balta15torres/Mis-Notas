@@ -3,7 +3,7 @@
 ## Índice de contenidos
 |Base de datos      |Tablas|
 |-------------------|------|
-|[Mostrar](#item1)  |[Mostrar tabla](#item4)|
+|[Mostrar](#mostrar-base-de-datos-existentes)  |[Mostrar tabla](#item4)|
 |[Crear](#item2)    |[Crear](#item5)|
 |[Eliminar](#item3) |[Eliminar](#item6)|
 |                   |[Mostrar estructura](#item7)|
@@ -91,9 +91,6 @@ ciertas condiciones indicadas con la cláusula "where".
 ```
 select nombre, clave from nombre_tabla where nombre='Baltasar';
 ```
-
-Para las condiciones se utilizan operadores relacionales (Operadores Relacionales).
-
 Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresRelacionales.md)).
 
 [Ir al indice](#top)
