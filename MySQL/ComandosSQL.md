@@ -86,6 +86,9 @@ qué campo debe aparecer) con "after":
 ````
  alter table nombre_tabla add cantidad tinyint unsigned after autor;
 ````
+
+[Ir al indice](#top)
+
 #### Eliminar campos existentes(alter table - drop):
 ````
  alter table nombre_tabla drop editorial;
@@ -101,6 +104,8 @@ Podemos eliminar 2 campos en una misma sentencia:
  alter table nombre_tabla drop editorial, drop cantidad;
 ````
 
+[Ir al indice](#top)
+
 #### Modificar el tipo de dato de un campo(alter table - modify):
 ````
 alter table nomre_tabla modify cantidad smallint unsigned;
@@ -112,12 +117,16 @@ Hay que tener cuidado al alterar los tipos de los campos de una tabla que ya tie
 puede afectar al valor del registro.Si intentamos definir "auto_increment" un campo que no es clave primaria, aparece un 
 mensaje de error indicando que el campo debe ser clave primaria.
 
+[Ir al indice](#top)
+
 #### Modificar el nombre de un campo(alter table - change):
 ````
 alter table nombre_tabla change nombre_actual nombre_nuevo decimal (5,2);
 ````
 Usamos "alter table" seguido del nombre de la tabla y "change" seguido del nombre actual y el nombre nuevo con su tipo y 
 los modificadores. En la misma sentencia, también podemos cambiar el tipo y sus modificadores.
+
+[Ir al indice](#top)
 
 #### Agregar o eliminar la clave primaria(alter table - add primary key - drop primary key):
 ````
@@ -140,6 +149,8 @@ Con "alter table" y "drop primary key" eliminamos una clave primaria. Si queremo
 en un campo "auto_increment"; Primero se debe modificar el campo quitándole el atributo "auto_increment" y luego se podrá 
 eliminar la clave, de lo contrario aparece un mensaje de error. **(recuerde)** un campo con "auto_increment" atributo DEBE 
 ser clave primaria. 
+          
+[Ir al indice](#top)        
                                                                                                                                                                                                                                                                                                       
 #### Agregar y eliminar índices(alter table - add index - drop index):
 - Agregar índice:
@@ -165,6 +176,8 @@ nombre de el o los campos por los cuales se indexará.
 ````
 Usamos "alter table" y "drop index" seguido del nombre del índice a borrar.
 
+[Ir al indice](#top)
+
 #### Renombrar una tabla (alter table - rename - rename table):
 ````
 alter table nombre_tabla rename nombre_nuevo;
@@ -179,6 +192,8 @@ Si queremos intercambiar los nombres de dos tablas:
 ````
  rename table amigos to auxiliar, contactos to amigos, auxiliar to contactos;
 ````
+
+[Ir al indice](#top)
 
 ### Agregar un registro a la tabla:                           
 ```
