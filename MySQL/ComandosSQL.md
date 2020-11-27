@@ -1,21 +1,20 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos                                     |Tablas                                                                                    |Registros                                                                     |
-|--------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Selecionar grupo(having)](#selecionar-grupo-registros-having)     |
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
-|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       ||
-|                                                  |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                ||
-|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        ||
-|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         ||
-|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               ||
-|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)||
-|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        ||
-|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  ||
-|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          ||
-|                                                  |[Alias](#alias)                                                                           ||
+|Base de datos                                     |Tablas                                                                                    |Modificar estructura tabla                                                |Registros                                                           |
+|--------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)|[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Agregar campo(alter table - add)](#agregar-nuevos-campos-alter-table---add))                                                                         |[Selecionar grupo(having)](#selecionar-grupo-registros-having)      |
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |                                                                          |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |   ||
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        |   ||
+|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         |   ||
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               |   ||
+|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)|   ||
+|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        |   ||
+|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  |   ||
+|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          |   ||
+|                                                  |[Alias](#alias)                                                                           |   ||
 ---
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -88,21 +87,98 @@ qué campo debe aparecer) con "after":
  alter table nombre_tabla add cantidad tinyint unsigned after autor;
 ````
 #### Eliminar campos existentes(alter table - drop):
+````
+ alter table nombre_tabla drop editorial;
+````
+Usamos "alter table" junto con "drop" y el nombre del campo a eliminar. Si intentamos borrar un campo inexistente aparece 
+un mensaje de error y la acción no se realiza.
+
+Si se borra un campo de una tabla que es parte de un índice, también se borra el índice; pero sin ser el último campo. 
+Es posible eliminar un campo que es clave primaria, por lo que hay que tener cuidado al eliminar un campo.
+
+Podemos eliminar 2 campos en una misma sentencia:
+````
+ alter table nombre_tabla drop editorial, drop cantidad;
+````
 
 #### Modificar el tipo de dato de un campo(alter table - modify):
+````
+alter table nomre_tabla modify cantidad smallint unsigned;
+````
+Usamos "alter table" seguido del nombre de la tabla y "modify" seguido del nombre del nuevo campo con su tipo y los 
+modificadores.
 
-#### Agregar o quitar modificadores como "null", "unsigned", "auto_increment":
+Hay que tener cuidado al alterar los tipos de los campos de una tabla que ya tiene registros cargados y dicha modificación 
+puede afectar al valor del registro.Si intentamos definir "auto_increment" un campo que no es clave primaria, aparece un 
+mensaje de error indicando que el campo debe ser clave primaria.
 
 #### Modificar el nombre de un campo(alter table - change):
+````
+alter table nombre_tabla change nombre_actual nombre_nuevo decimal (5,2);
+````
+Usamos "alter table" seguido del nombre de la tabla y "change" seguido del nombre actual y el nombre nuevo con su tipo y 
+los modificadores. En la misma sentencia, también podemos cambiar el tipo y sus modificadores.
 
 #### Agregar o eliminar la clave primaria(alter table):
+````
+alter table nombre_tabla add primary key (nombre_campo);
+````
+Usamos "alter table" con "add primary key" y entre paréntesis el nombre del campo que será clave. Si existe ya una 
+[clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria), 
+aparecerá un mensaje de error.
 
+Para que un campo agregado como clave primaria sea autoincrementable, es necesario agregarlo como clave y luego redefinirlo 
+con "modify" como "auto_increment". No se puede agregar una clave y al mismo tiempo definir el campo autoincrementable.
+Si intentamos establecer como clave primaria un campo que tiene valores repetidos, aparece un mensaje de error y la 
+operación no se realiza.
+
+Para eliminar una clave primaria usamos:
+````
+ alter table libros drop primary key;
+````
+Con "alter table" y "drop primary key" eliminamos una clave primaria. Si queremos eliminar la clave primaria establecida 
+en un campo "auto_increment"; Primero se debe modificar el campo quitándole el atributo "auto_increment" y luego se podrá 
+eliminar la clave, de lo contrario aparece un mensaje de error. **(recuerde)** un campo con "auto_increment" atributo DEBE 
+ser clave primaria. 
+                                                                                                                                                                                                                                                                                                      
 #### Agregar y eliminar índices(alter table - add index - drop index):
+- Agregar índice:
+````
+alter table nombre_tabla add index nombre_índice (editorial);
+````
+Usamos "alter table" junto con "add index" seguido del nombre que le daremos al índice y entre paréntesis el nombre de 
+el o los campos por los cuales se indexará.
+
+Para índices comunes o únicos, si no colocamos nombre de índice, se coloca uno por defecto, como cuando los creamos junto 
+con la tabla.
+
+Para agregar un índice único multicampo, por los campos "titulo" y "editorial", usamos la siguiente sentencia:
+````
+ alter table nombre_tabla add unique index nombre_índice (titulo,editorial);
+````
+Usamos "alter table" junto con "add unique index" seguido del nombre que le daremos al índice y entre paréntesis el 
+nombre de el o los campos por los cuales se indexará.
+
+- Eliminar índice:
+````
+ alter table nombre_tabla drop index nombre_índice;
+````
+Usamos "alter table" y "drop index" seguido del nombre del índice a borrar.
 
 #### Renombrar una tabla (alter table - rename - rename table):
+````
+alter table nombre_tabla rename nombre_nuevo;
+````
+Usamos "alter table" seguido del nombre actual, "rename" y el nuevo nombre.
 
-Hace una copia temporal de la tabla original, realiza los cambios en la copia, luego borra la tabla original y renombra 
-la copia.
+También podemos cambiar el nombre a una tabla usando:
+````
+rename table amigos to contactos;
+````
+Si queremos intercambiar los nombres de dos tablas:
+````
+ rename table amigos to auxiliar, contactos to amigos, auxiliar to contactos;
+````
 
 ### Agregar un registro a la tabla:                           
 ```
