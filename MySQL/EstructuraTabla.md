@@ -24,12 +24,12 @@ para facilitar la obtención de información de una tabla se utilizan índices.
 |[calculos](#calculos-en-un-campo-columna)|
 
 ### Indice
-|Indice de una tabla                                      |Tipos de índices|
-|---------------------------------------------------------|------------------------------|
-|[Definición](#indice-de-una-tabla)                       |[PRYMARY](#primary)|
-|[Mostrar índices](#mostrar-información-sobre-los-índices)|[index](#index)|
-|                                                         |[unique](#unique)|
-|                                                         |[Tabla de características](#características)|
+|Indice de una tabla                                                       |Tipos de índices|
+|--------------------------------------------------------------------------|------------------------------|
+|[Definición](#indice-de-una-tabla)                                        |[PRYMARY](#primary)|
+|[Mostrar índices](#mostrar-información-sobre-los-índices)                 |[index](#index)|
+|[Eliminar índice](#eliminar-índice)                                       |[unique](#unique)|
+|[Crear índice a tabla existente](#creación-de-índices-a-tablas-existentes)|[Tabla de características](#características)|
 
 ---
 ## Columna
@@ -441,5 +441,30 @@ común		darlo o por defecto	"index" o "key"	No		Si		varios
 ````
 show index from libros
 ````
+
+[Ir al indice](#índice-de-contenidos)
+
+### Eliminar índice
+Para eliminar un índice usamos "drop index" seguido de su nombre y "on" seguido del nombre de la tabla a la cual pertenece.
+````
+drop index i_editorial on nombre_tabla;
+````
+Podemos eliminar los índices creados con "index" y con "unique" pero no el que se crea al definir una clave primaria. 
+Un índice PRIMARY se elimina automáticamente al eliminar la [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria).
+
+[Ir al indice](#índice-de-contenidos)
+
+### Creación de índices a tablas existentes
+Para agregar un [índice común](#index) a una tabla existente usamos "create index", indicamos el nombre, sobre qué tabla y el o los 
+campos por los cuales se indexará, entre paréntesis.
+````
+ create index i_editorial on libros (editorial);
+````
+Para agregar un [índice único](#unique) a una tabla existente usamos "create unique index", indicamos el nombre, sobre qué tabla y 
+entre paréntesis, el o los campos por los cuales se indexará.
+````
+ create unique index i_tituloeditorial on libros (titulo,editorial);
+````
+Un índice PRIMARY no puede agregarse, se crea automáticamente al definir una clave primaria.
 
 [Ir al indice](#índice-de-contenidos)

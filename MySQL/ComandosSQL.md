@@ -1,18 +1,21 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos                                     |Tablas                                                                   |Registros                                                                     |
-|--------------------------------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------|
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)|[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                        |[Selecionar grupo(having)](#selecionar-grupo-registros-having)     |
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                    |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
-|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)      ||
-|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                       ||
-|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)              ||
-|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                       ||
-|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla) ||
-|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)         ||
-|                                                  |[Alias](#alias)                                                          ||
+|Base de datos                                     |Tablas                                                                                    |Registros                                                                     |
+|--------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Selecionar grupo(having)](#selecionar-grupo-registros-having)     |
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       ||
+|                                                  |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                ||
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        ||
+|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         ||
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               ||
+|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)||
+|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        ||
+|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  ||
+|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          ||
+|                                                  |[Alias](#alias)                                                                           ||
 ---
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -69,12 +72,65 @@ Muestra cada campo, su tipo, lo que ocupa en bytes y otros datos como la aceptac
 
 [Ir al indice](#top)
 
+### Modificar la estructura de una tabla:
+Para modificar la estructura de una tabla existente, usamos "alter table" y se puede usar para:
+
+#### Agregar nuevos campos(alter table - add):
+````
+ alter table nombre_tabla add cantidad smallint unsigned not null;
+````
+Usamos "alter table" seguido del nombre de la tabla y "add" seguido del nombre del nuevo campo con su tipo y los modificadores.
+
+Si intentamos agregar un campo con un nombre existente, aparece un mensaje de error indicando que el campo ya existe y la 
+sentencia no se ejecuta.lo coloca al final, después de todos los campos existentes; podemos indicar su posición (luego de 
+qué campo debe aparecer) con "after":
+````
+ alter table nombre_tabla add cantidad tinyint unsigned after autor;
+````
+#### Eliminar campos existentes(alter table - drop):
+
+#### Modificar el tipo de dato de un campo(alter table - modify):
+
+#### Agregar o quitar modificadores como "null", "unsigned", "auto_increment":
+
+#### Modificar el nombre de un campo(alter table - change):
+
+#### Agregar o eliminar la clave primaria(alter table):
+
+#### Agregar y eliminar índices(alter table - add index - drop index):
+
+#### Renombrar una tabla (alter table - rename - rename table):
+
+Hace una copia temporal de la tabla original, realiza los cambios en la copia, luego borra la tabla original y renombra 
+la copia.
+
 ### Agregar un registro a la tabla:                           
 ```
 insert into nombre_tabla (nombre, clave) values ('Baltasar','Balta');
 ```
 Es importante ingresar los valores en el mismo orden en que se nombran los campos.Los campos de cadenas de caracteres se
  colocan entre comillas simples.
+
+[Ir al indice](#top)
+
+### Remplazar registros de una tabla:
+Para reemplaza un registro por otro empleamos "replace", , el registro existente se borra y se ingresa el nuevo, de esta 
+manera no se duplica el valor único.
+````
+ replace into nombre_tabla values(23,'Java en 10 minutos','Mario Molina','Emece',25.5);
+````
+"replace" funciona como "insert" en los siguientes casos:
+
+- si los datos ingresados no afectan al campo único, es decir no se ingresa valor para el campo indexado, aparece un 
+mensaje indicando que se afectó un solo registro, el ingresado, que se guarda con valor de código 0.
+     
+- si el dato para el campo indexado que se ingresa no existe, aparece un mensaje indicando que se afectó solo una fila, 
+no hubo reemplazo porque el código no existía antes de la nueva inserción.
+
+- si la tabla no tiene indexación, como ninguna [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria) 
+(ni [índice único](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/EstructuraTabla.md#unique)), podríamos 
+ingresar varios registros con igual valor de campo, aparecería un mensaje indicando que se afectó 1 registro (el ingresado)
+, no se reemplazó ninguno y ahora habría 2 valores de campo iguales.
 
 [Ir al indice](#top)
 
@@ -131,6 +187,30 @@ select codigo,titulo,autor,editorial,precio from libros order by editorial desc;
 
 ````
 Para ello agregamos la palabra clave "desc".
+
+#### Cláusula limit del select
+Para restringir los registros que se retornan en una consulta "select". Puede recibir 1 ó 2 argumentos numéricos enteros 
+positivos; el primero indica el número del primer registro a retornar, el segundo, el número máximo de registros a retornar. 
+El número de registro inicial es 0 (no 1).
+
+Si el segundo argumento supera la cantidad de registros de la tabla, se limita hasta el último registro.
+````
+select * from libros limit 8;
+
+select * from libros limit 5,4;
+````
+"limit" puede combinarse con más comandos, por ejemplo "delete" y a su vez con mas cláusulas por ejemplo "order by".
+````
+delete from libros order by precio limit 2;
+````
+
+[Ir al indice](#top)
+
+### Mostrar registros en forma aleatoria de una tabla:
+Para recuperar de una tabla registros aleatorios se puede utilizar la función "rand()" combinada con "order by" y "limit":
+````
+select * from libros order by rand() limit 5;
+````
 
 [Ir al indice](#top)
 
