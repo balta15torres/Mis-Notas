@@ -1,9 +1,11 @@
 # Estructura de una tabla
 
-Una tabla organiza los datos en columnas y filas; cada columna es un campo (o atributo) y cada fila, un registro. 
+Una tabla organiza los datos en columnas y filas; cada columna es un campo (o atributo) y cada fila, un registro.También 
+para facilitar la obtención de información de una tabla se utilizan índices.
 
 <a name="top"></a>
 ## Índice de contenidos
+### Columna
 |Tipo de dato Texto         |Tipo de dato Numeros                       |Tipo de dato Fechas y horas                       |Otros tipos de datos                |Tipo de dato null|
 |---------------------------|-------------------------------------------|--------------------------------------------------|------------------------------------|--------------------------|
 |[varchar](#varcharx)       |[integer ó int](#integerx-ó-intx)          |[date](#date)                                     |[otros datos](#otros-tipos-de-datos)|[null](#tipo-de-dato-null)|
@@ -21,11 +23,20 @@ Una tabla organiza los datos en columnas y filas; cada columna es un campo (o at
 |-----------------------------------------|
 |[calculos](#calculos-en-un-campo-columna)|
 
+### Indice
+|Indice de una tabla                                      |Tipos de índices|
+|---------------------------------------------------------|------------------------------|
+|[Definición](#indice-de-una-tabla)                       |[PRYMARY](#primary)|
+|[Mostrar índices](#mostrar-información-sobre-los-índices)|[index](#index)|
+|                                                         |[unique](#unique)|
+|                                                         |[Tabla de características](#características)|
+
 ---
+## Columna
 
-## Tipos de datos de un campo (columna)
+### Tipos de datos de un campo (columna)
 
-### Tipo de dato Texto
+#### Tipo de dato Texto
 Se usa para almacenar cadenas de caracteres. Una cadena es una secuencia de caracteres . Se coloca entre comillas (simples).
 Determinamos el máximo de caracteres con el argumento "x" que va entre paréntesis.
 
@@ -37,17 +48,18 @@ Si asignamos una cadena de caracteres de mayor longitud que la permitida o defin
 
 Tenemos los siguientes tipos: varchar, char y text.
 
-#### varchar(x): 
+##### varchar(x): 
 Su rango va de 1 a 65535 caracteres.
 
-#### char(x):
+##### char(x):
 Su rango es de 1 a 255 caracteres.
 
-#### blob o text:
+##### blob o text:
 Su rango es de bloque de datos de 60000 caracteres de longitud aprox.
 
 [Ir al indice](#índice-de-contenidos)
-### Tipo de dato Numeros
+
+#### Tipo de dato Numeros
 Existe variedad de tipos numéricos para representar enteros, negativos, decimales. Determinamos el máximo con el argumento 
 "x" que va entre paréntesis.
 
@@ -55,7 +67,7 @@ Antes de crear una tabla debemos pensar en sus campos y optar por el tipo de dat
 
 Tenemos los siguientes tipos: integer, float y decimal.
 
-#### integer(x) ó int(x): 
+##### integer(x) ó int(x): 
 Se usa para guardar valores numéricos enteros, de -2000000000 a 2000000000 aprox.Un campo de tipo integer puede tener 
 atributos extras 'auto_increment' y 'unsigned'. Este tipo támbien tiene [subtipos](#subtipos):
     
@@ -109,7 +121,7 @@ de 0 a 10000000000000000000.
 [Ir al indice](#índice-de-contenidos)
 
 ---
-#### float: 
+##### float: 
 Se usa para almacenar valores numéricos decimales. Se utiliza como separador el punto (.).
 ```
 create table libros(
@@ -121,7 +133,7 @@ create table libros(
 );
 ```
 
-#### decimal(t,d) ó numeric(t,d):
+##### decimal(t,d) ó numeric(t,d):
 Se usa para almacenar valores numéricos decimales.El primer argumento indica el total de dígitos y el segundo, la 
 cantidad de decimales. El rango depende de los argumentos, también los bytes que ocupa.Si no se indica el valor del 
 segundo argumento, por defecto es 0. 
@@ -136,7 +148,7 @@ create table libros(
 [Ir al indice](#índice-de-contenidos)
 
 ---
-#### Tabla de espacio de almacenamiento para Tipo de dato Numeros
+##### Tabla de espacio de almacenamiento para Tipo de dato Numeros
 ```
 Tipo		Bytes de almacenamiento
 _______________________________________
@@ -151,24 +163,24 @@ decimal(t,d)	t+2 si d>0, t+1 si d=0 y d+2 si t<d
 ```
 [Ir al indice](#índice-de-contenidos)
 
-### Tipo de dato Fechas y horas
+#### Tipo de dato Fechas y horas
 Para guardar fechas y horas dispone de varios tipos: date (fecha), datetime (fecha y hora), time (hora), year (año) y 
 timestamp.Es importante elegir el tipo de dato adecuado según el caso, el más preciso.
 
-#### date: 
+##### date: 
 Representa una fecha con formato "YYYY-MM-DD". El rango va de "1000-01-01" a "9999-12-31".
 
-#### datetime: 
+##### datetime: 
 Almacena fecha y hora, su formato es "YYYY-MM-DD HH:MM:SS". El rango es de "1000-01-01 00:00:00" a "9999-12-31 23:59:59".
 
-#### time: 
+##### time: 
 Una hora. Su formato es "HH:MM:SS". El rango va de "-838:59:59" a "838:59:59".
 
-#### year(2) y year(4): 
+##### year(2) y year(4): 
 Un año. Su formato es "YYYY" o "YY". Permite valores desde 1901 a 2155 (en formato de 4 dígitos) y desde 1970 a 2069 (en formato de 2 dígitos).
 
 ---
-#### Tabla de espacio de almacenamiento para Tipos de datos Fechas y horas
+##### Tabla de espacio de almacenamiento para Tipos de datos Fechas y horas
 ```
 Tipo		Bytes de almacenamiento
 _______________________________________
@@ -179,10 +191,10 @@ year		1
 ```
 [Ir al indice](#índice-de-contenidos)
 
-### Otros tipos de datos:
+#### Otros tipos de datos:
 enum y set representan una enumeración y un conjunto respectivamente.
 
-### Tipo de dato null 
+#### Tipo de dato null 
 En una tabla la columna "Null" especifica si el campo permite valores nulos;
 ````
 create table libros(
@@ -208,7 +220,7 @@ select * from libros where precio is not null;
 ````
 [Ir al indice](#índice-de-contenidos)
 
-## Valores por defecto en un campo (columna)
+### Valores por defecto en un campo (columna)
 Un valor por defecto se inserta cuando no está presente al ingresar un registro y en algunos casos en que el dato 
 ingresado es inválido que lo veremos en el siguiente punto([valores inválidos](#valores-inválidos-en-un-campo-columna)).
 
@@ -233,7 +245,7 @@ en el insert, en caso contrario genera un error. Podemos solucionar este problem
 SET sql_mode = '';
 ````
 
-### Atributo default en un campo (columna)
+#### Atributo default en un campo (columna)
 Podemos establecer valores por defecto para los campos cuando creamos la tabla, esta es una muy buena decisión para evitar 
 incompatibilidades entre distintas versiones de MySQL. Para ello utilizamos "default" al definir el campo.
 
@@ -257,7 +269,7 @@ También se puede utilizar "default" para dar el valor por defecto a los campos 
 ````
 [Ir al indice](#índice-de-contenidos)
 
-### Atributo zerofill en un campo (columna)
+#### Atributo zerofill en un campo (columna)
 Cualquier campo numérico puede tener otro atributo extra "zerofill" y este atributo rellena con ceros los espacios 
 disponibles a la izquierda.
 
@@ -279,7 +291,7 @@ valor negativo ingresado en un campo definido "zerofill" es un valor inválido.
 
 [Ir al indice](#índice-de-contenidos)
 
-## Valores inválidos en un campo (columna)
+### Valores inválidos en un campo (columna)
 Un valor es inválido por tener un tipo de dato incorrecto para el campo o por estar fuera de rango.
 
 Veamos los distintos tipos de datos inválidos.
@@ -332,7 +344,7 @@ fecha y hora not null			null					error
 
 [Ir al indice](#índice-de-contenidos)
 
-## Calculos en un campo (columna)
+### Calculos en un campo (columna)
 Es posible obtener salidas en las cuales una columna sea el resultado de un cálculo y no un campo de una tabla.
 
 Tendremos que añadir la operación en la sentencia y MySQL realiza el cálculo y lo incluye en una columna extra en la 
@@ -343,6 +355,91 @@ salida.Esta columna extra no se guarda en la tabla será provisional.
 También podemos enlazar operaciones en la sentencia.
 ````
  select titulo, precio,precio*0.1,precio-(precio*0.1) from libros;
+````
+
+[Ir al indice](#índice-de-contenidos)
+
+## Indice de una tabla
+El indice posibilita el acceso directo y rápido haciendo más eficiente las búsquedas registros ó recuperar registros de 
+otras tablas empleando "join". Sin índice, se debe recorrer secuencialmente toda la tabla para encontrar un registro.
+
+Una tabla puede tener hasta 64 índices. Los nombres de índices aceptan todos los caracteres y pueden tener una longitud 
+máxima de 64 caracteres.
+
+Una tabla se indexa por un campo (o varios) y es un tipo de archivo con 2 entradas: un dato (un valor de algún campo de 
+la tabla) y un puntero.
+
+### Tipos de índices
+
+#### PRIMARY
+MySQL le da el nombre "PRIMARY", se crea automáticamente cuando establecemos un campo como clave primaria 
+que puede ser de tipo numérico o de tipo caracter, no podemos crearlo directamente. Los valores indexados deben ser únicos 
+y además no pueden ser nulos. Una tabla solamente puede tener una [clave primaria(simple ó compuesta)](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria) 
+por lo tanto, solamente tiene un índice PRIMARY.
+
+#### index
+Crea un indice común, los valores no necesariamente son unicos y aceptan valores "null". Podemos darle un 
+nombre, si no se lo damos,  por defecto tomará el nombre del primer campo que forma parte del índice, con un sufijo opcional 
+(_2,_3,...) para que sea único.. "key" es sinónimo de "index". Puede haber varios por tabla.
+````
+create table libros(
+  codigo int unsigned auto_increment,
+  titulo varchar(40) not null,
+  autor varchar(30),
+  editorial varchar(15),
+  primary key(codigo),
+  index i_editorial (editorial)
+ );
+````
+Después de la definición de los campos colocamos "index" seguido del nombre que le damos y entre paréntesis el o los campos 
+por los cuales se indexará dicho índice.
+
+También se pueden crear índices por múltiple campos se listan los campos dentro de los paréntesis separados con comas. 
+Los valores de los índices se crean concatenando los valores de los campos mencionados.
+ ````
+create table libros(
+  codigo int unsigned auto_increment,
+  titulo varchar(40) not null,
+  autor varchar(30),
+  editorial varchar(15),
+  primary key(codigo),
+  index i_tituloeditorial (titulo,editorial)
+ );
+ ````
+
+#### unique
+Crea un indice para los cuales los valores deben ser únicos y diferentes, aparece un mensaje de error si 
+intentamos agregar un registro con un valor ya existente. Permite valores nulos y pueden definirse varios por tabla. 
+Podemos darle un nombre, si no se lo damos, se coloca uno por defecto.
+
+Todos los índices pueden ser multicolumna, es decir, pueden estar formados por más de 1 campo.También se puede indexar 
+por un campo que contenga valores NULL, excepto los PRIMARY.
+````
+create table libros(
+  codigo int unsigned auto_increment,
+  titulo varchar(40) not null,
+  autor varchar(30),
+  editorial varchar(15),
+  unique i_codigo(codigo),
+  unique i_tituloeditorial (titulo,editorial)
+ );
+````
+Después de la definición de los campos colocamos "unique" seguido del nombre que le damos y entre paréntesis el o los 
+campos por los cuales se indexará dicho índice.
+
+
+#### Características:
+````
+Tipo		Nombre			Palabra clave	Valores únicos	Acepta null	Cantidad por tabla
+___________________________________________________________________________________________________________
+clave primaria	PRIMARY			no		Si		No		1
+común		darlo o por defecto	"index" o "key"	No		Si		varios
+único		darlo o por defecto	"unique"	Si		Si		varios
+````
+
+### Mostrar información sobre los índices 
+````
+show index from libros
 ````
 
 [Ir al indice](#índice-de-contenidos)

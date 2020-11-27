@@ -4,7 +4,7 @@
 |Base de datos                                     |Tablas                                                                   |Registros                                                                     |
 |--------------------------------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------|
 |[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)|[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                        |[Selecionar grupo(having)](#selecionar-grupo-registros-having-)     |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                        |[Selecionar grupo(having)](#selecionar-grupo-registros-having)     |
 |[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                    |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
 |                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)      ||
 |                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                       ||
@@ -40,8 +40,9 @@ show tables;
 
 ### Crear una tabla: 
 Debemos resolver qué campos (columnas) tendrá y que tipo de datos almacenarán cada uno de ellos, es 
-decir, su estructura.La tabla debe ser definida con un nombre que la identifique y con el cual accederemos a ella.
-Al ingresar los datos de cada registro debe tenerse en cuenta la cantidad y el orden de los campos.
+decir, su [estructura](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/EstructuraTabla.md). La tabla debe 
+ser definida con un nombre que la identifique y con el cual accederemos a ella. Al ingresar los datos de cada registro 
+debe tenerse en cuenta la cantidad y el orden de los campos.
 ```
 create table nombre_tabla (
     nombre varchar(30),

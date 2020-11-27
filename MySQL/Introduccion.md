@@ -33,11 +33,12 @@ Cada campo (columna) también debe definir el tipo de dato que almacenará.
 Un registro es una fila de la tabla que contiene los datos propiamente dichos. Cada registro tiene un dato por cada columna.
 
 ## ¿Que es una clave primaria? 
-Una clave primaria es un campo (o varios) que identifica 1 solo registro (fila) en una tabla.
+Una clave primaria pueden ser simples(un solo campo) ó compuestas(varios campos) y identifica 1 solo registro (fila) en 
+una tabla.
 
 Para un valor del campo clave existe solamente 1 registro. Los valores no se repiten ni pueden ser [nulos](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/EstructuraTabla.md#valores-null-en-un-campo-columna).
 
-Establecemos que un campo sea clave primaria al momento de creación de la tabla:
+Establecemos que un campo sea clave primaria(simple) al momento de creación de la tabla:
 ````
  create table usuarios (
   nombre varchar(20),
@@ -45,3 +46,20 @@ Establecemos que un campo sea clave primaria al momento de creación de la tabla
   primary key(nombre)
  );
 ````
+En el caso de que ningún campo, por si solo cumpla con la condición para ser clave, es decir, debe identificar un solo 
+registro y el valor no puede repetirse, debemos usar 2 campos; clave primaria(compuesta), así identificamos unívocamente 
+cada registro.
+````
+create table vehiculos(
+  marca char(6) not null,
+  tipo char(4),
+  horallegada time not null
+  horasalida time,
+  primary key(patente,horallegada)
+ );                                                                                        
+````          
+Nombramos los campos que formarán parte de la clave separados por comas.Un campo que es parte de una clave primaria(compuesta) 
+puede ser autoincrementable sólo si es el primer campo que compone la clave, si es secundario no se permite.                                                                              
+ 
+Es posible eliminar un campo que es parte de una clave primaria, la clave queda con los campos restantes; siempre que no 
+queden registros con clave repetida;
