@@ -1,16 +1,16 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos                                     |Tablas                                                                                    |Modificar estructura tabla                                                |Registros                                                           |
-|--------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------|
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)|[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Agregar campo(alter table - add)](#agregar-nuevos-campos-alter-table---add))                                                                         |[Selecionar grupo(having)](#selecionar-grupo-registros-having)      |
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |                                                                          |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
-|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |   ||
-|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        |   ||
-|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         |   ||
-|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               |   ||
-|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)|   ||
+|Base de datos                                     |Tablas                                                                                    |Modificar estructura tabla                                                                                              |Registros                                                           |
+|--------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                                              |[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Agregar campo(alter table - add)](#agregar-nuevos-camposalter-table---add)                                             |[Selecionar grupo(having)](#selecionar-grupo-registros-having)      |
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[Eliminar campo(alter table - drop)](#eliminar-campos-existentesalter-table---drop)                                     |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |[Modificar tipo dato campo(alter table - modify)](#modificar-el-tipo-de-dato-de-un-campoalter-table---modify)           ||
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        |[Modificar nombre campo](#modificar-el-nombre-de-un-campoalter-table---change)                                          ||
+|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         |[Agregar/eliminar clave primaria](#agregar-o-eliminar-la-clave-primariaalter-table---add-primary-key---drop-primary-key)||
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             ||
+|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)|[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   ||
 |                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        |   ||
 |                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  |   ||
 |                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          |   ||
@@ -119,7 +119,7 @@ alter table nombre_tabla change nombre_actual nombre_nuevo decimal (5,2);
 Usamos "alter table" seguido del nombre de la tabla y "change" seguido del nombre actual y el nombre nuevo con su tipo y 
 los modificadores. En la misma sentencia, también podemos cambiar el tipo y sus modificadores.
 
-#### Agregar o eliminar la clave primaria(alter table):
+#### Agregar o eliminar la clave primaria(alter table - add primary key - drop primary key):
 ````
 alter table nombre_tabla add primary key (nombre_campo);
 ````
