@@ -1,17 +1,18 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos |Tablas|
-|--------------|------|
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)|
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)|
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)|
-|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)|
-|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)|
-|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)|
-|                                                  |[Cláusula order by](#cláusula-order-by-del-select)|
-|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)|
-|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)|
+|Base de datos                                     |Tablas                                                                   |Registros                                                                     |
+|--------------------------------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)|[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                        |[Selecionar grupo(having)](#selecionar-grupo-registros-having-)     |
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                    |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)      ||
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                       ||
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)              ||
+|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                       ||
+|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla) ||
+|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)         ||
+|                                                  |[Alias](#alias)                                                          ||
 ---
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -86,8 +87,9 @@ Con el asterisco (*) indicamos que seleccione todos los campos de la tabla que n
 ```
 select * from nombre_tabla;
 ```
-Existe una cláusula, "where" que es opcional, con ella podemos recuperar algunos registros, sólo los que cumplan con 
-ciertas condiciones indicadas con la cláusula "where".
+#### Cláusula where del select
+Es opcional, con ella podemos recuperar algunos registros, sólo los que cumplan con ciertas condiciones indicadas con la 
+cláusula "where".
 ```
 select nombre, clave from nombre_tabla where nombre='Baltasar';
 ```
@@ -190,3 +192,99 @@ Igual al concepto de borrado cuando utilizamos el comando 'update' la varible 'S
 valor 1 (activa) ó ó que la clausula "where" se relacione a una [clave primaria](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-clave-primaria).
 
 [Ir al indice](#top)
+
+### Alias 
+Un "alias" se usa como nombre de un campo o de una expresión o para referenciar una tabla cuando se utilizan más de una 
+tabla. Los alias serán de suma importancia cuando rescate datos desde el lenguaje PHP.
+
+Cuando usamos una [función de agrupamiento](#funciones-de-agrupamiento), la columna en la salida tiene como encabezado 
+dicha funcion,para que el resultado sea más claro podemos utilizar un alias:
+````
+select count(*) as librosdeborges from libros where autor like '%Borges%';
+````
+La columna de la salida ahora tiene como encabezado el alias, lo que hace más comprensible el resultado.
+
+Un alias puede tener hasta 255 caracteres, acepta todos los caracteres. La palabra clave "as" es opcional en algunos casos, 
+pero es conveniente usarla. Si el alias consta de una sola cadena las comillas no son necesarias, pero si contiene más de 
+una palabra, es necesario colocarla entre comillas.
+
+Se pueden utilizar alias en las clásulas "group by", "order by", "having" (siempre y cuando el alias no tenga espacios en 
+blanco), pero no está permitido utilizar alias de campos en las cláusulas "where".
+````
+select editorial, count(*) as cantidad from libros group by editorial having cantidad>2;
+````
+
+[Ir al indice](#top)
+
+## Registros
+
+### Funciones de agrupamiento
+Existen en MySQL funciones que nos permiten contar registros, calcular sumas, promedios, obtener valores máximos y mínimos.
+Estas funciones se denominan "funciones de agrupamiento" porque operan sobre conjuntos de registros, no con datos individuales.
+
+También podemos utilizar esta función junto con la clausula "where" para una consulta más específica.
+
+Tenga en cuenta que no debe haber espacio entre el nombre de la función y el paréntesis, porque puede confundirse con una 
+referencia a una tabla o campo.
+
+- count(): Nos permiten contar registros, cuenta la cantidad de registros de una tabla, incluyendo los que tienen valor nulo. 
+````
+select count(*) from libros;
+
+select count(*) from libros where autor like '%Borges%';
+````
+"count(*)" retorna la cantidad de registros de una tabla (incluyendo los que tienen valor "null").
+
+- sum(): Retorna la suma de los valores que contiene el campo especificado.
+````
+select sum(cantidad) from libros;
+
+select sum(cantidad) from libros where editorial ='Planeta';
+````
+
+- max() y min(): Para averiguar el valor máximo o mínimo de un campo.
+````
+ select max(precio) from libros;
+
+ select min(precio) from libros where autor like '%Rowling%';
+````
+
+- avg(): retorna el valor promedio de los valores del campo especificado.
+````
+select avg(precio) from libros where titulo like '%PHP%';
+````
+
+#### Clausula group by 
+Para operar con datos individuales, podemos combinar las [funciones de agrupamiento](#funciones-de-agrupamiento) con la 
+cláusula "group by", que agrupa registros para consultas detalladas.
+````
+select ciudad, count(*) from visitantes group by ciudad;
+````
+
+[Ir al indice](#top)
+
+### Selecionar grupo registros (having)
+Así como la cláusula ["where"](#cláusula-where-del-select) permite seleccionar (o rechazar) registros individuales; 
+la cláusula "having" permite seleccionar (o rechazar) un grupo de registros.
+
+Generalmente se usa la cláusula "having" con funciones de agrupamiento, esto no puede hacerlo la cláusula "where".
+````
+select editorial, count(*) from libros group by editorial having count(*)>2;
+````
+Se utiliza "having", seguido de la condición de búsqueda, para seleccionar ciertas filas retornadas por la cláusula "group by".
+
+**No debemos confundir** la cláusula "where" que establece condiciones para la selección de registros de un "select" con la 
+cláusula "having" que establece condiciones para la selección de registros de una salida "group by".
+
+[Ir al indice](#top)
+
+### Obviar registros duplicados (distinct)
+Con la cláusula "distinct" se especifica que los registros con ciertos datos duplicados sean obviadas en el resultado. 
+También podemos combinarla con "where" ó "group by".
+````
+select distinct autor from libros;
+
+select distinct autor from libros where editorial='Planeta';
+
+select editorial, count(distinct autor) from libros group by editorial;
+````
