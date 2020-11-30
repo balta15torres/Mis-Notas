@@ -11,7 +11,8 @@ para facilitar la obtención de información de una tabla se utilizan índices.
 |[varchar](#varcharx)       |[integer ó int](#integerx-ó-intx)          |[date](#date)                                     |[otros datos](#otros-tipos-de-datos)|[null](#tipo-de-dato-null)|
 |[char](#charx)             |[Subtipos integer](#subtipos)              |[datetime](#datetime)                             |                                    |                          |
 |[blob o text](#blob-o-text)|[float](#float)                            |[time](#time)                                     |                                    |                          |
-|                           |[decimal ó numeric](#decimaltd-ó-numerictd)|[year](#year2-y-year4)                            |                                    |                          |
+|[enum](#enumxy)            |[decimal ó numeric](#decimaltd-ó-numerictd)|[year](#year2-y-year4)                            |                                    |                          |
+|[set](#setxy)              |                                           |                                                  |                                    |                          |
 
 |Valores por defecto                                        |Valores inválidos                                  |
 |-----------------------------------------------------------|---------------------------------------------------|
@@ -42,7 +43,7 @@ Determinamos el máximo de caracteres con el argumento "x" que va entre parénte
 
 Si la cadena ingresada es menor a la longitud definida, , almacena espacios en blanco a la derecha, tales espacios se 
 eliminan al recuperarse el dato.Conveniente utilizar el tipo correcto ya que ocupara tantos bytes como se definen con el 
-argumento "x".
+argumento "x" ó en el caso del tipo "enum" depende del número de valores enumerados(argumentos "x","y"). 
 
 Si asignamos una cadena de caracteres de mayor longitud que la permitida o definida, la cadena se corta.
 
@@ -55,7 +56,71 @@ Su rango va de 1 a 65535 caracteres.
 Su rango es de 1 a 255 caracteres.
 
 ##### blob o text:
-Su rango es de bloque de datos de 60000 caracteres de longitud aprox.
+Su rango es de bloque de datos de 65535 caracteres de longitud aprox.La diferencia entre "blob" y "text" es que "text" 
+diferencia mayúsculas y minúsculas y "blob" no; esto es porque "text" almacena cadenas de caracteres no binarias 
+(caracteres), en cambio "blob" contiene cadenas de caracteres binarias (de bytes).
+
+No permiten valores "default".
+
+**Existen subtipos:**
+
+- tinyblob o tinytext: longitud máxima de 255 caracteres.
+
+- mediumblob o mediumtext: longitud de 16777215 caracteres.
+
+- longblob o longtext: longitud para 4294967295 caracteres.
+
+Se utiliza este tipo de datos cuando se necesita almacenar imágenes, sonidos o textos muy largos.
+
+[Ir al indice](#índice-de-contenidos)
+
+**Además de los tipos de datos anteriores, existen otros tipos "enum" y "set":**
+
+##### enum('x','y'):
+Representa un conjunto de cadenas enumeradas. Puede tener un máximo de 65535 valores distintos. Es una cadena cuyo valor 
+se elige de una lista enumerada(argumentos "x","y") de valores que deben ser cadenas de caracteres, cadena vacía, incluso 
+"null".Si un "enum" permite valores nulos, el valor por defecto es "null"; si no permite valores nulos, el valor por defecto 
+es el primer valor de la lista de permitidos.
+ 
+Los valores presentados como permitidos tienen un valor de índice que comienza en 1 y el índice de un valor "null" es 
+"null". Si se ingresa un valor numérico, lo interpreta como índice de la enumeración y almacena el valor de la lista con 
+dicho número de índice. 
+````
+create table postulantes(
+  numero int unsigned auto_increment,
+  documento char(8),
+  nombre varchar(30),
+  estudios enum('ninguno','primario','secundario', 'terciario','universitario'),
+  primary key(numero)
+ );
+````
+
+[Ir al indice](#índice-de-contenidos)
+
+##### set('x','y'):
+Es similar al tipo "enum" excepto que puede almacenar más de un valor en el campo. Puede tener 1 ó más valores que se 
+eligen de una lista(argumentos "x","y") de valores permitidos que se especifican al definir el campo y se separan con 
+comas. Puede tener un máximo de 64 miembros. Ejemplo: un campo definido como set ('x', 'y') not null, permite los valores 
+'x', 'y' y 'x,y'. Si carga un valor no incluido en la lista(argumentos "x","y"), se ignora y almacena cadena vacía.
+````
+create table postulantes(
+ numero int unsigned auto_increment,
+ documento char(8),
+ nombre varchar(30),
+ idioma set('ingles','italiano','portuges'),
+ primary key(numero)
+);
+````
+Para ingresar un valor que contenga más de un elemento de la lista(argumentos "x","y") se separan por comas:
+````
+ insert into postulantes (documento,nombre,idioma) values('23555444','Juana Pereyra','ingles,italiano');
+````
+Se almacenan en el orden que han sido definidos, si se repite algún valor, cada elemento repetido, se ignora y se guarda 
+una vez ó si ingresamos un valor que no esta en la listalista(argumentos "x","y"), un valor de índice fuera de rango se 
+ignora y se almacena una cadena vacía.
+
+Los bytes de almacenamiento del tipo "set" depende del número de miembros, se calcula así: (cantidad de miembros+7)/8 
+bytes; entonces puede ser 1,2,3,4 u 8 bytes.
 
 [Ir al indice](#índice-de-contenidos)
 
