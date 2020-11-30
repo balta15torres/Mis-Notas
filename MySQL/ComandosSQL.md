@@ -7,16 +7,13 @@
 |[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Clave foránea](#clave-foránea)                                  |[Agregar campo(alter table - add)](#agregar-nuevos-camposalter-table---add)                                             |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                          |[Cláusula where](#cláusula-where-del-select)   
 |[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[left join](#left-join)                                          |[Eliminar campo(alter table - drop)](#eliminar-campos-existentesalter-table---drop)                                     |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                                |[Cláusula order by](#cláusula-order-by-del-select) 
 |                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |[right join](#right-join)                                        |[Modificar tipo dato campo(alter table - modify)](#modificar-el-tipo-de-dato-de-un-campoalter-table---modify)           |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla) |[Cláusula limit](#cláusula-limit-del-select)                                          
-|                                                  |[Chequear y reparar tablas(check - repair)](#chequear-y-reparar-tablascheck---repair)     |[natural join](#natural-join)                                    |[Modificar nombre campo](#modificar-el-nombre-de-un-campoalter-table---change)                                          |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                   |
-|                                                  |[Alias](#alias)                                                                           |[inner join](#inner-join)                                        |[Agregar/eliminar clave primaria](#agregar-o-eliminar-la-clave-primariaalter-table---add-primary-key---drop-primary-key)|[Modificar registros(update)](#modificar-registros-de-una-tabla)                           |
-|                                                  |[Variables de usuario](#variables-de-usuario)                                             |[straight_join](#straight_join)                                  |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             |[Funciones de agrupamiento](#funciones-de-agrupamiento)                                    |
-|                                                  |                                                                                          |[join con más de dos tablas](#join-con-más-de-dos-tablas)        |[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   |[Selecionar grupo(having)](#selecionar-grupo-registros-having)                             |
-|                                                  |                                                                                          |[join con 'if' y 'case'](#funciónes-de-control-con-varias-tablas)|                                                                                                                        |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)                       |
+|                                                  |[Chequear y reparar tablas(check - repair)](#chequear-y-reparar-tablascheck---repair)     |[natural join](#natural-join)                                    |[Modificar nombre campo](#modificar-el-nombre-de-un-campoalter-table---change)                                          |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                   |[Subconsultas](#subconsultas)
+|                                                  |[Alias](#alias)                                                                           |[inner join](#inner-join)                                        |[Agregar/eliminar clave primaria](#agregar-o-eliminar-la-clave-primariaalter-table---add-primary-key---drop-primary-key)|[Modificar registros(update)](#modificar-registros-de-una-tabla)                           |[Tipos de Subconsultas](#hay-tres-tipos-básicos-de-subconsultas)
+|                                                  |[Variables de usuario](#variables-de-usuario)                                             |[straight_join](#straight_join)                                  |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             |[Funciones de agrupamiento](#funciones-de-agrupamiento)                                    |[Subconsultas correlacionadas](#subconsultas_correlacionadas)
+|                                                  |                                                                                          |[join con más de dos tablas](#join-con-más-de-dos-tablas)        |[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   |[Selecionar grupo(having)](#selecionar-grupo-registros-having)                             |[Subconsulta simil autocombinación](#subconsulta-simil-autocombinación)
+|                                                  |                                                                                          |[join con 'if' y 'case'](#funciónes-de-control-con-varias-tablas)|                                                                                                                        |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)                       |[Reglas a tener en cuenta](#reglas-a-tener-en-cuenta-al-emplear-subconsultas)
 |                                                  |                                                                                          |                                                                 |                                                                                                                        |[Encriptación(aes_encrypt - aes_decrypt)](#encriptación-de-datos-aes_encrypt---aes_decrypt)|
 ---
-
-
-
 
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -28,7 +25,7 @@ show databases;
 ```
 create database nombre_db;
 ```
-
+Hay tres tipos básicos de subconsultas
 ### Eliminar una base de datos:
 ```
 drop database nombre_db;
@@ -687,7 +684,7 @@ si alguien puede acceder a los datos de la tabla no podrá conocer el valor real
 
 [Ir al indice](#top)
 
-## Consulta (mostrar registro)
+## Consultas y Subconsultas (mostrar registros)
  
 ### Mostrar registros de una tabla:
 ```
@@ -767,3 +764,140 @@ delete from libros order by precio limit 2;
 ````
 
 [Ir al indice](#top)
+
+### Subconsultas
+Es una sentencia "select" anidada en otra sentencia "select", "insert", "update" o "delete" (o en otra subconsulta).Las 
+subconsultas se DEBEN incluir entre paréntesis. Puede haber subconsultas dentro de subconsultas.
+
+Las subconsultas se emplean cuando una consulta es muy compleja, entonces se la divide en varios pasos lógicos y se obtiene 
+el resultado con una única instrucción y cuando la consulta depende de los resultados de otra consulta.
+
+#### Hay tres tipos básicos de subconsultas
+
+1. las que retornan un solo valor escalar(o una lista de valores de un campo) que se utiliza con un operador de comparación 
+o en lugar de una expresión.
+````
+ select titulo,autor, precio
+  from libros
+  where precio=(select max(precio) from libros);
+````
+El campo del "where" de la consulta exterior es compatible con el valor retornado por la expresión de la subconsulta.
+
+2. las que retornan una lista de valores, se combinan con ("in ó "not in"), o los operadores "any", "some" y "all".
+- in ó not in:
+````
+ select nombre
+  from editoriales
+  where codigo in
+   (select codigoeditorial
+     from libros
+     where autor='Richard Bach');
+````
+- any y some:
+Son sinónimos. Chequean si alguna fila de la lista resultado de una subconsulta se encuentra el valor especificado en la 
+condición.
+
+Compara un valor escalar con los valores de un campo y devuelven "true" si la comparación con cada valor de la lista de 
+la subconsulta es verdadera, sino "false".El tipo de datos que se comparan deben ser compatibles.
+````
+ select titulo
+  from libros
+  where autor='Borges' and
+  codigoeditorial = any
+   (select e.codigo
+    from editoriales as e
+    join libros as l
+    on codigoeditorial=e.codigo
+    where l.autor='Richard Bach');
+````
+- all:
+Compara un valor escalar con una serie de valores. Chequea si TODOS los valores de la lista de la consulta externa se 
+encuentran en la lista de valores devuelta por la consulta interna.
+````
+ select titulo
+  from libros
+  where autor='Borges' and
+  codigoeditorial = all
+   (select e.codigo
+    from editoriales as e
+    join libros as l
+    on codigoeditorial=e.codigo
+    where l.autor='Richard Bach');
+````
+
+3. los que testean la existencia con ("exists" ó "not exists").
+Se emplean para determinar si hay o no datos en una lista de valores. Pueden emplearse con [subconsultas correlacionadas](#subconsultas-correlacionadas) 
+para restringir el resultado de una consulta exterior a los registros que cumplen la subconsulta (consulta interior). 
+Estos operadores retornan "true" (si las subconsultas retornan registros) o "false" (si las subconsultas no retornan registros).
+
+MySQL termina la recuperación de registros cuando por lo menos un registro cumple la condición "where" de la subconsulta.
+````
+ select cliente,numero
+  from facturas as f
+  where exists
+   (select * from detalles as d
+     where f.numero=d.numerofactura
+     and d.articulo='lapiz');
+````
+
+#### Subconsultas correlacionadas
+Son las que evalúa la consulta interna tantas veces como registros tiene la consulta externa y se realiza una subconsulta 
+para cada registro de la consulta externa.
+````
+select f.*,
+  (select count(d.numeroitem)
+    from Detalles as d
+    where f.numero=d.numerofactura) as cantidad,
+  (select sum(d.preciounitario*cantidad)
+    from Detalles as d
+    where f.numero=d.numerofactura) as total
+from facturas as f;
+````
+En este caso, la consulta externa pasa un valor de "numeroitem" a la consulta interna. La consulta interna toma ese valor 
+y determina si existe en "detalles", si existe, la consulta interna devuelve la suma "cantidad". El proceso se repite para 
+el registro de la consulta externa, la consulta externa pasa otro "numero" a la consulta interna y MySQL repite la evaluación.
+
+#### Subconsulta simil autocombinación
+Son las que la consulta interna y la externa emplean la misma tabla y pueden reemplazarse por una autocombinación.
+````
+ select distinct l1.titulo
+  from libros as l1
+  where l1.titulo in
+  (select l2.titulo
+    from libros as l2 
+    where l1.editorial <> l2.editorial);
+````
+En el ejemplo anterior empleamos una [subconsulta correlacionada](#subconsultas-correlacionadas) y las consultas interna 
+y externa emplean la misma tabla. La subconsulta devuelve una lista de valores por ello se emplea "in" y sustituye una 
+expresión en una cláusula "where".
+
+Con el siguiente "join" se obtiene el mismo resultado:
+````
+ select distinct l1.titulo
+  from libros as l1
+  join libros as l2
+  on l1.titulo=l1.titulo and
+  l1.autor=l2.autor 
+  where l1.editorial<>l2.editorial;
+````
+
+---
+
+#### Reglas a tener en cuenta al emplear subconsultas
+
+- la lista de selección de una subconsulta que va luego de un operador de comparación puede incluir sólo una expresión o 
+campo (excepto si se emplea "exists" y "in").
+
+- si el "where" de la consulta exterior incluye un campo, este debe ser compatible con el campo en la lista de selección 
+de la subconsulta.
+
+- las subconsultas luego de un operador de comparación (que no es seguido por "any" o "all") no pueden incluir cláusulas 
+"group by" ni "having".
+
+- "distinct" no puede usarse con subconsultas que incluyan "group by".
+
+- una subconsulta puede estar anidada dentro del "where" o "having" de una consulta externa o dentro de otra subconsulta.
+
+- si una tabla se nombra solamente en un subconsulta y no en la consulta externa, los campos no serán incluidos en la 
+salida (en la lista de selección de la consulta externa).
+
