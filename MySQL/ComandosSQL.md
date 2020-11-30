@@ -1,8 +1,8 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos                                     |Tablas                                                                                    |Varias Tablas                                                    |Modificar estructura tabla                                                                                              |Registros                                                                                  |Consultas                                                  |SubConsultas|
-|--------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|------------|
+|Base de datos                                     |Tablas                                                                                    |Varias Tablas                                                    |Modificar estructura tabla                                                                                              |Registros                                                                                  |Consultas y SubConsultas                                   |
+|--------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|
 |[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[join](#join)                                                    |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                                              |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                         |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                    
 |[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Clave foránea](#clave-foránea)                                  |[Agregar campo(alter table - add)](#agregar-nuevos-camposalter-table---add)                                             |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                          |[Cláusula where](#cláusula-where-del-select)   
 |[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[left join](#left-join)                                          |[Eliminar campo(alter table - drop)](#eliminar-campos-existentesalter-table---drop)                                     |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                                |[Cláusula order by](#cláusula-order-by-del-select) 
@@ -699,6 +699,9 @@ Con el asterisco (*) indicamos que seleccione todos los campos de la tabla que n
 ```
 select * from nombre_tabla;
 ```
+
+[Ir al indice](#top)
+
 #### Cláusula where del select
 Es opcional, con ella podemos recuperar algunos registros, sólo los que cumplan con ciertas condiciones indicadas con la 
 cláusula "where".
@@ -706,6 +709,8 @@ cláusula "where".
 select nombre, clave from nombre_tabla where nombre='Baltasar';
 ```
 Para las condiciones se utilizan operadores relacionales([Operadores Relacionales](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/OperadoresCondicionales.md)).
+
+[Ir al indice](#top)
 
 #### Cláusula order by del select
 Podemos ordenar el resultado de un "select" para que los registros se muestren ordenados por algún campo, para ello usamos la cláusula "order by".
@@ -742,6 +747,8 @@ select codigo,titulo,autor,editorial,precio from libros order by editorial desc;
 
 ````
 Para ello agregamos la palabra clave "desc".
+
+[Ir al indice](#top)
 
 #### Cláusula limit del select
 Para restringir los registros que se retornan en una consulta "select". Puede recibir 1 ó 2 argumentos numéricos enteros 
