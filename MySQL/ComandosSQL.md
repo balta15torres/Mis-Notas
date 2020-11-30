@@ -1,20 +1,20 @@
 # Instrucciones para el servidor MySQL
 <a name="top"></a>
 ## Índice de contenidos
-|Base de datos                                     |Tablas                                                                                    |Modificar estructura tabla                                                                                              |Registros                                                           |
-|--------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                                              |[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Agregar campo(alter table - add)](#agregar-nuevos-camposalter-table---add)                                             |[Selecionar grupo(having)](#selecionar-grupo-registros-having)      |
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[Eliminar campo(alter table - drop)](#eliminar-campos-existentesalter-table---drop)                                     |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
-|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |[Modificar tipo dato campo(alter table - modify)](#modificar-el-tipo-de-dato-de-un-campoalter-table---modify)           ||
-|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        |[Modificar nombre campo](#modificar-el-nombre-de-un-campoalter-table---change)                                          ||
-|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         |[Agregar/eliminar clave primaria](#agregar-o-eliminar-la-clave-primariaalter-table---add-primary-key---drop-primary-key)||
-|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             ||
-|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)|[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   ||
-|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        |   ||
-|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  |   ||
-|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          |   ||
-|                                                  |[Alias](#alias)                                                                           |   ||
+|Base de datos                                     |Tablas                                                                                    |Varias Tablas                  |Modificar estructura tabla                                                                                              |Registros                                                           |
+|--------------------------------------------------|------------------------------------------------------------------------------------------|-------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[join](#join)                  |[Modificar estructura(alter table)](#modificar-la-estructura-de-una-tabla)                                              |[Funciones de agrupamiento](#funciones-de-agrupamiento)             |
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Clave foránea](#clave-foránea)|[Agregar campo(alter table - add)](#agregar-nuevos-camposalter-table---add)                                             |[Selecionar grupo(having)](#selecionar-grupo-registros-having)      |
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[left join](#left-join)        |[Eliminar campo(alter table - drop)](#eliminar-campos-existentesalter-table---drop)                                     |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)|
+|                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |[right join](#right-join)      |[Modificar tipo dato campo(alter table - modify)](#modificar-el-tipo-de-dato-de-un-campoalter-table---modify)           ||
+|                                                  |[Agregar(insert)](#agregar-un-registro-a-la-tabla)                                        |[natural join](#natural join)  |[Modificar nombre campo](#modificar-el-nombre-de-un-campoalter-table---change)                                          ||
+|                                                  |[Reemplazar registro(replace)](#remplazar-registros-de-una-tabla)                         |[inner join](#inner-join)      |[Agregar/eliminar clave primaria](#agregar-o-eliminar-la-clave-primariaalter-table---add-primary-key---drop-primary-key)||
+|                                                  |[Mostrar registro(select)](#mostrar-registros-de-una-tabla)                               |[straight_join](#straightjoin) |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             ||
+|                                                  |[Mostrar registros aleatorios(rand())](#mostrar-registros-en-forma-aleatoria-de-una-tabla)||[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   ||
+|                                                  |[Cláusula order by](#cláusula-order-by-del-select)                                        ||   ||
+|                                                  |[Eliminar registro(delete ó truncate)](#eliminar-registros-de-una-tabla)                  ||   ||
+|                                                  |[Modificar registros(update)](#modificar-registros-de-una-tabla)                          ||   ||
+|                                                  |[Alias](#alias)                                                                           ||   ||
 ---
 ## Base de datos
 ### Mostrar base de datos existentes: 
@@ -385,6 +385,99 @@ blanco), pero no está permitido utilizar alias de campos en las cláusulas "whe
 ````
 select editorial, count(*) as cantidad from libros group by editorial having cantidad>2;
 ````
+
+[Ir al indice](#top)
+
+## Varias Tablas
+Para evitar la repetición de datos y ocupar menos espacio, se separa la información en varias tablas. Cada tabla tendrá 
+parte de la información total que queremos registrar.
+
+### join
+Cuando obtenemos información de más de una tabla decimos que hacemos un "join" (unión). 
+````
+ select * from libros
+  join editoriales
+  on libros.codigoeditorial=editoriales.codigo;
+````
+Analicemos la consulta anterior.
+
+Unimos la tabla 'libros' con "join" a otra tabla 'editoriales' y con 'on' la condición; campo por el cual se combinarán 
+las 2 tablas, que será el enlace. En este caso 'codigoeditorial' campo de tabla libros y 'codigo' campo de tabla editoriales. 
+También debemos especificar a cuál tabla pertenece el campo al hacer referencia a él, para ello se antepone el nombre de 
+la tabla al nombre del campo, separado por un punto (.), en este caso 'libros' y 'editoriales'.
+
+Si no especificamos por qué campo relacionamos ambas tablas,es decir, un "join" sin condición "on" genera un resultado 
+en el que aparecen todas las combinaciones de los registros de ambas tablas.
+
+Para simplificar la sentencia podemos usar un alias para cada tabla.
+
+[Ir al indice](#top)
+
+### Clave foránea
+Un campo que se usa para establecer un "join" (unión) con otra tabla en la cual es clave primaria, se denomina "clave 
+ajena o foránea".
+
+Cuando alteramos una tabla, debemos tener cuidado con las claves foráneas. Si modificamos el tipo, longitud o atributos 
+de una clave foránea, ésta puede quedar inhabilitada para hacer los enlaces. Las claves foráneas y las claves primarias 
+deben ser del mismo tipo para poder enlazarse. Si modificamos una, debemos modificar la otra para que los valores se correspondan.
+
+### left join
+Para averiguar qué registros de una tabla no se encuentran en otra tabla necesitamos usar un "join" diferente.
+````
+select * from editoriales
+  left join libros
+  on editoriales.codigo=libros.codigoeditorial;
+````
+Un "left join" se usa para hacer coincidir registros en una tabla 'editoriales' con otra tabla 'libros', pero, si un valor 
+de la tabla 'editoriales' no encuentra coincidencia en la tabla de la 'libros', se genera una fila extra (una por cada 
+valor no encontrado) con todos los campos seteados a "null".
+
+Es importante la posición en que se colocan las tablas en un "left join", la tabla 'editoriales' es la que se usa para 
+localizar registros en la tabla 'libros'. 
+
+Un "left join" puede tener clausula "where" que restringa el resultado de la consulta considerando solamente los registros 
+que encuentran coincidencia en la tabla de la 'libros'.
+
+[Ir al indice](#top)
+
+### right join
+Opera del mismo modo que "left join" sólo que la búsqueda de coincidencias la realiza de modo inverso, es decir, los roles 
+de las tablas se invierten, busca coincidencia de valores desde la tabla de la derecha en la tabla de la izquierda y si 
+un valor de la tabla de la derecha no encuentra coincidencia en la tabla de la izquierda, se genera una fila extra (una 
+por cada valor no encontrado) con todos los campos seteados a "null".
+
+[Ir al indice](#top)
+
+### natural join
+Se usa cuando los campos por los cuales se enlazan las tablas tienen el mismo nombre.
+````
+select titulo
+  from libros as l
+  natural join editoriales as e;
+````
+En el caso de que en ambas tablas, el titulo se denomina "titulo", podemos omitir la parte "on" que indica los nombres 
+de los campos por el cual se enlazan las tablas, empleando "natural join", se unirán por el campo que tienen en común.
+
+Hay que tener cuidado con este tipo de "join" porque si ambas tablas tiene más de un campo con igual nombre, MySQL no 
+sabrá por cual debe realizar la unión y también tener muy claro los campos que hacen referencia al enlace; podria dar una 
+resultado erroneo.
+
+[Ir al indice](#top)
+
+### inner join
+Es igual que "join". Con "inner join", todos los registros no coincidentes son descartados, sólo los coincidentes se muestran 
+en el resultado.
+````
+ select * from libros
+  inner join editoriales
+  on libros.codigoeditorial=editoriales.codigo;
+````
+
+[Ir al indice](#top)
+
+### straight_join
+Es igual a "join", sólo que la tabla de la izquierda es leída siempre antes que la de la derecha. Puede tener sentido cuando 
+tenemos consultas de tablas con muchos datos y los resultados con un join no nos proporciona un tiempo de ejecución eficiente.
 
 [Ir al indice](#top)
 
