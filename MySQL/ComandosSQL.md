@@ -3,9 +3,9 @@
 ## Índice de contenidos
 |Base de datos                                     |Tablas                                                                                    |Varias Tablas                                                    |Vistas
 |--------------------------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------|-------
-|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[join](#join)                                                    |                   
-|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Clave foránea](#clave-foránea)                                  | 
-|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[left join](#left-join)                                          |
+|[Mostrar(show)](#mostrar-base-de-datos-existentes)|[Mostrar tabla(show)](#mostrar-las-tablas-existentes-de-la-base-de-datos)                 |[join](#join)                                                    |[Crear Vistas](#vistas)                  
+|[Crear(create)](#crear-una-base-de-datos)         |[Crear(create)](#crear-una-tabla)                                                         |[Clave foránea](#clave-foránea)                                  |[Crear Vistas basadas en otra Vista](#vistas-basadas-en-otras-vistas)
+|[Eliminar(drop)](#eliminar-una-base-de-datos)     |[Eliminar(drop)](#eliminar-una-tabla)                                                     |[left join](#left-join)                                          |[Vistas actualizables](#vistas actualizables-insert---update---delete)
 |                                                  |[Mostrar estructura(describe)](#mostrar-la-estructura-de-una-tabla)                       |[right join](#right-join)                                        |                                       
 |                                                  |[Chequear y reparar tablas(check - repair)](#chequear-y-reparar-tablascheck---repair)     |[natural join](#natural-join)                                    |
 |                                                  |[Alias](#alias)                                                                           |[inner join](#inner-join)                                        |
@@ -32,6 +32,7 @@
 ---
 
 ## Base de datos
+
 ### Mostrar base de datos existentes: 
 ```
 show databases;
@@ -1001,3 +1002,96 @@ La cantidad de columnas devueltas en la consulta debe ser la misma que la cantid
 Se pueden insertar valores en una tabla con el resultado de una consulta que incluya cualquier tipo de "join".
 
 [Ir al indice](#top)
+
+### Vistas 
+Definicion de [Vista](https://github.com/balta15torres/Mis-Notas/blob/master/MySQL/Introduccion.md#que-es-una-vista)
+ 
+El usuario opera con los datos de una vista como si se tratara de una tabla, pudiendo modificar en algunos casos tales datos.     
+
+Las vistas permiten:
+
+- ocultar información: permitiendo el acceso a algunos datos y manteniendo oculto el resto de la información que no se 
+incluye en la vista.
+            
+- simplificar la administración de los permisos de usuario: se pueden dar al usuario permisos para que solamente pueda 
+acceder a los datos a través de vistas, en lugar de concederle permisos para acceder a ciertos campos, así se protegen 
+las tablas base de cambios en su estructura.      
+
+- mejorar el rendimiento: se puede evitar tipear instrucciones repetidamente almacenando en una vista el resultado de una 
+consulta compleja que incluya información de varias tablas.                                                                                         
+
+Podemos crear vistas con: 
+- un subconjunto de registros y campos de una tabla; 
+
+- una unión de varias tablas; 
+
+- una combinación de varias tablas; 
+
+- un resumen estadístico de una tabla; 
+
+- un subconjunto de otra vista, combinación de vistas y tablas.
+
+Una vista se define usando un "select".La sintaxis básica parcial:
+````
+ create view NOMBREVISTA as
+  SENTENCIASSELECT
+   from TABLA;
+````
+El contenido de una vista se muestra con un "select":
+````
+ select * from NOMBREVISTA;
+````
+Los nombres para vistas deben seguir las mismas reglas que cualquier identificador. Para distinguir una tabla de una vista 
+podemos fijar una convención para darle nombres.
+
+Los campos y expresiones de la consulta que define una vista DEBEN tener un nombre y DEBEN ser únicos (no puede haber dos 
+campos o encabezados con igual nombre). Se debe colocar nombre de campo cuando es un campo calculado o si hay 2 campos 
+con el mismo nombre.
+
+Al crear una vista, MySQL verifica que existan las tablas a las que se hacen referencia en ella.
+
+Se aconseja probar la sentencia "select" con la cual definiremos la vista antes de crearla para asegurarnos que el resultado 
+que retorna es el imaginado.
+
+Otra sintaxis para definir una vista es la siguiente:
+````
+ create view NOMBREVISTA (NOMBRESDEENCABEZADOS)
+  as
+  SENTENCIASSELECT
+   from TABLA;
+````
+La diferencia con la orta sintaxis es que se colocan entre paréntesis los encabezados de las columnas que aparecerán en 
+la vista. Nos facilita la lectura de una vista.
+
+[Ir al indice](#top)
+
+### Vistas basadas en otras vistas
+Cuando creamos la vista podemos hacer referencia a otra vista ya existente.
+````
+ create view vista_empleados_con_hijos as
+   select nombre,
+          sexo,
+          seccion,
+          cantidadhijos
+     from vista_empleados
+     where cantidadhijos>0;
+````
+Como vemos en la cláusula from hacemos referencia a la vista ya existente llamada 'vista_empleados'.
+
+[Ir al indice](#top) 
+
+### Vistas actualizables (insert - update - delete)
+Es importante tener en cuenta que si se modifican los datos de una vista, se modifica la tabla base.
+
+Se puede insertar, actualizar o eliminar datos de una tabla a través de una vista, teniendo en cuenta que si se modifican 
+los datos de una vista, se modifica la tabla base y lo siguiente:
+
+- No pueden afectar a más de una tabla consultada.
+- No se pueden cambiar los campos resultado de un cálculo.
+- La vista no puede tener funciones de agrupamiento (count - max - min - sum - avg)
+- No puede tener la cláusula distinct, union, group by, having.
+- No puede tener subconsultas en la cláusula select.
+
+La vista debe ser bastante sencilla para luego sea actualizable.
+
+[Ir al indice](#top) 

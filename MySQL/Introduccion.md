@@ -63,3 +63,20 @@ puede ser autoincrementable sólo si es el primer campo que compone la clave, si
  
 Es posible eliminar un campo que es parte de una clave primaria, la clave queda con los campos restantes; siempre que no 
 queden registros con clave repetida;
+
+## ¿Que es una vista?
+Una vista es una alternativa para mostrar datos de una o varias tablas. Una vista es como una tabla virtual que almacena 
+una consulta.
+
+Entonces, una vista almacena una consulta como un objeto para utilizarse posteriormente. Las tablas consultadas en una 
+vista se llaman tablas base. En general, se puede dar un nombre a cualquier consulta y almacenarla como una vista.
+
+Una vista suele llamarse también tabla virtual porque los resultados que retorna y la manera de referenciarlas es la misma que para una tabla.
+
+## ¿Que son los procedimientos almacenados? 
+ 
+Un procedimiento almacenado es un conjunto de instrucciones (comandos SQL) a las que se les da un nombre, que se almacena 
+en el servidor. Permiten encapsular tareas repetitivas.
+
+Un procedimiento almacenados puede hacer referencia a objetos (tablas, vistas etc.) que no existen al momento de crearlo. 
+Los objetos deben existir cuando se ejecute el procedimiento almacenado.
