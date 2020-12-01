@@ -12,7 +12,11 @@
 |                                                  |[Variables de usuario](#variables-de-usuario)                                             |[straight_join](#straight_join)                                  |[Agregar/eliminar índices](#agregar-y-eliminar-índicesalter-table---add-index---drop-index)                             |[Funciones de agrupamiento](#funciones-de-agrupamiento)                                    |[Subconsultas correlacionadas](#subconsultas_correlacionadas)
 |                                                  |                                                                                          |[join con más de dos tablas](#join-con-más-de-dos-tablas)        |[Renombrar una tabla(alter table - rename)](#renombrar-una-tabla-alter-table---rename---rename-table)                   |[Selecionar grupo(having)](#selecionar-grupo-registros-having)                             |[Subconsulta simil autocombinación](#subconsulta-simil-autocombinación)
 |                                                  |                                                                                          |[join con 'if' y 'case'](#funciónes-de-control-con-varias-tablas)|                                                                                                                        |[Obviar duplicados(distinct)](#obviar-registros-duplicados-distinct)                       |[Reglas a tener en cuenta](#reglas-a-tener-en-cuenta-al-emplear-subconsultas)
-|                                                  |                                                                                          |                                                                 |                                                                                                                        |[Encriptación(aes_encrypt - aes_decrypt)](#encriptación-de-datos-aes_encrypt---aes_decrypt)|
+|                                                  |                                                                                          |                                                                 |                                                                                                                        |[Encriptación(aes_encrypt - aes_decrypt)](#encriptación-de-datos-aes_encrypt---aes_decrypt)|[Subconsulta; tabla derivada](#tabla-derivada)
+|                                                  |                                                                                          |                                                                 |                                                                                                                        |                                                                                           |[Actualizar registro con subconsulta(update - delete)](#subconsulta-update---delete))
+|                                                  |                                                                                          |                                                                 |                                                                                                                        |                                                                                           |[Agregar registro con subconsulta(insert)](#subconsulta-insert))
+
+
 ---
 
 ## Base de datos
@@ -772,6 +776,8 @@ subconsultas se DEBEN incluir entre paréntesis. Puede haber subconsultas dentro
 Las subconsultas se emplean cuando una consulta es muy compleja, entonces se la divide en varios pasos lógicos y se obtiene 
 el resultado con una única instrucción y cuando la consulta depende de los resultados de otra consulta.
 
+[Ir al indice](#top)
+
 #### Hay tres tipos básicos de subconsultas
 
 1. las que retornan un solo valor escalar(o una lista de valores de un campo) que se utiliza con un operador de comparación 
@@ -840,6 +846,8 @@ MySQL termina la recuperación de registros cuando por lo menos un registro cump
      and d.articulo='lapiz');
 ````
 
+[Ir al indice](#top)
+
 #### Subconsultas correlacionadas
 Son las que evalúa la consulta interna tantas veces como registros tiene la consulta externa y se realiza una subconsulta 
 para cada registro de la consulta externa.
@@ -856,6 +864,8 @@ from facturas as f;
 En este caso, la consulta externa pasa un valor de "numeroitem" a la consulta interna. La consulta interna toma ese valor 
 y determina si existe en "detalles", si existe, la consulta interna devuelve la suma "cantidad". El proceso se repite para 
 el registro de la consulta externa, la consulta externa pasa otro "numero" a la consulta interna y MySQL repite la evaluación.
+
+[Ir al indice](#top)
 
 #### Subconsulta simil autocombinación
 Son las que la consulta interna y la externa emplean la misma tabla y pueden reemplazarse por una autocombinación.
@@ -881,6 +891,8 @@ Con el siguiente "join" se obtiene el mismo resultado:
   where l1.editorial<>l2.editorial;
 ````
 
+[Ir al indice](#top)
+
 ---
 
 #### Reglas a tener en cuenta al emplear subconsultas
@@ -901,3 +913,79 @@ de la subconsulta.
 - si una tabla se nombra solamente en un subconsulta y no en la consulta externa, los campos no serán incluidos en la 
 salida (en la lista de selección de la consulta externa).
 
+[Ir al indice](#top)
+
+#### Tabla derivada
+Se pueden emplear subconsultas que retornen un conjunto de registros de varios campos en lugar de una tabla. Se denomina 
+tabla derivada y se coloca en la cláusula "from" para que la use un "select" externo.
+
+La tabla derivada es una subconsulta; debe ir entre paréntesis y tener un alias para poder referenciarla.
+
+La sintaxis básica es la siguiente:
+````
+ select ALIASdeTABLADERIVADA.CAMPO
+ from (TABLADERIVADA) as ALIAS;
+````
+Podemos probar la consulta que retorna la tabla derivada y luego agregar el "select" externo:
+````
+select f.*,
+ (select sum(d.precio*cantidad)
+  from detalles as d
+  where f.numero=d.numerofactura) as total
+  from facturas as f;
+````
+La consulta anterior contiene una subconsulta correlacionada; retorna todos los datos de "facturas" y el monto total por 
+factura de "detalles". Esta consulta retorna varios registros y varios campos, será la tabla derivada que emplearemos 
+en la siguiente consulta:
+````
+ select td.numero,c.nombre,td.total
+  from clientes as c
+  join (select f.*,
+   (select sum(d.precio*cantidad)
+    from Detalles as d
+    where f.numero=d.numerofactura) as total
+  from facturas as f) as td
+  on td.codigocliente=c.codigo;
+````
+La consulta anterior retorna, de la tabla derivada (referenciada con "td") el número de factura y el monto total, y de la 
+tabla "clientes", el nombre del cliente. Note que este "join" no emplea 2 tablas, sino una tabla propiamente dicha y una 
+tabla derivada, que es en realidad una subconsulta.
+
+[Ir al indice](#top)
+
+#### Subconsulta (update - delete)
+La sintaxis básica es la siguiente:
+````
+update TABLA set CAMPO=NUEVOVALOR
+  where CAMPO = (SUBCONSULTA);
+
+ delete from TABLA
+  where CAMPO = (SUBCONSULTA);
+````
+
+[Ir al indice](#top)
+
+#### Subconsulta (insert)
+Una subconsulta también puede estar dentro de un "insert".
+
+La sintaxis básica es la siguiente:
+````
+ insert into TABLAENQUESEINGRESA (CAMPOSTABLA1)
+  select (CAMPOSTABLACONSULTADA)
+  from TABLACONSULTADA;
+````
+Ejemplo:
+````
+ insert into aprobados (documento,nota)
+  select (documento,nota)
+   from alumnos;
+````
+Entonces, se puede insertar registros en una tabla con la salida devuelta por una consulta a otra tabla; para ello escribimos 
+la consulta y le anteponemos "insert into" junto al nombre de la tabla en la cual ingresaremos los registros y los campos 
+que se cargarán (si se ingresan todos los campos no es necesario listarlos).
+
+La cantidad de columnas devueltas en la consulta debe ser la misma que la cantidad de campos a cargar en el "insert".
+
+Se pueden insertar valores en una tabla con el resultado de una consulta que incluya cualquier tipo de "join".
+
+[Ir al indice](#top)
