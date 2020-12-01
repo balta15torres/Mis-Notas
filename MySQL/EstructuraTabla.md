@@ -5,31 +5,26 @@ para facilitar la obtención de información de una tabla se utilizan índices.
 
 <a name="top"></a>
 ## Índice de contenidos
-### Columna
-|Tipo de dato Texto         |Tipo de dato Numeros                       |Tipo de dato Fechas y horas                       |Otros tipos de datos                |Tipo de dato null|
-|---------------------------|-------------------------------------------|--------------------------------------------------|------------------------------------|--------------------------|
-|[varchar](#varcharx)       |[integer ó int](#integerx-ó-intx)          |[date](#date)                                     |[otros datos](#otros-tipos-de-datos)|[null](#tipo-de-dato-null)|
-|[char](#charx)             |[Subtipos integer](#subtipos)              |[datetime](#datetime)                             |                                    |                          |
-|[blob o text](#blob-o-text)|[float](#float)                            |[time](#time)                                     |                                    |                          |
-|[enum](#enumxy)            |[decimal ó numeric](#decimaltd-ó-numerictd)|[year](#year2-y-year4)                            |                                    |                          |
-|[set](#setxy)              |                                           |                                                  |                                    |                          |
+
+|Tipo de dato Texto         |Tipo de dato Numeros                       |Tipo de dato Fechas y horas                       |Otros tipos de datos                |Tipo de dato null         |Calculos en columna                      |
+|---------------------------|-------------------------------------------|--------------------------------------------------|------------------------------------|--------------------------|-----------------------------------------|
+|[varchar](#varcharx)       |[integer ó int](#integerx-ó-intx)          |[date](#date)                                     |[otros datos](#otros-tipos-de-datos)|[null](#tipo-de-dato-null)|[calculos](#calculos-en-un-campo-columna)|
+|[char](#charx)             |[Subtipos integer](#subtipos)              |[datetime](#datetime)                             |                                    |                          |                                         |
+|[blob o text](#blob-o-text)|[float](#float)                            |[time](#time)                                     |                                    |                          |                                         |
+|[enum](#enumxy)            |[decimal ó numeric](#decimaltd-ó-numerictd)|[year](#year2-y-year4)                            |                                    |                          |                                         |
+|[set](#setxy)              |                                           |                                                  |                                    |                          |                                         |
 
 |Valores por defecto                                        |Valores inválidos                                  |
 |-----------------------------------------------------------|---------------------------------------------------|
 |[por defecto](#valores-por-defecto-en-un-campo-columna)    |[inválidos](#valores-inválidos-en-un-campo-columna)|
 |[atributo default](#atributo-default-en-un-campo-columna)  |                                                   |
-|[atributo zerofill](#atributo-zerofill-en-un-campo-columna)|                                                  |
+|[atributo zerofill](#atributo-zerofill-en-un-campo-columna)|                                                   |
 
-|Calculos en columna                      |
-|-----------------------------------------|
-|[calculos](#calculos-en-un-campo-columna)|
-
-### Indice
 |Indice de una tabla                                                       |Tipos de índices|
-|--------------------------------------------------------------------------|------------------------------|
-|[Definición](#indice-de-una-tabla)                                        |[PRYMARY](#primary)|
-|[Mostrar índices](#mostrar-información-sobre-los-índices)                 |[index](#index)|
-|[Eliminar índice](#eliminar-índice)                                       |[unique](#unique)|
+|--------------------------------------------------------------------------|--------------------------------------------|
+|[Definición](#indice-de-una-tabla)                                        |[PRYMARY](#primary)                         |
+|[Mostrar índices](#mostrar-información-sobre-los-índices)                 |[index](#index)                             |
+|[Eliminar índice](#eliminar-índice)                                       |[unique](#unique)                           |
 |[Crear índice a tabla existente](#creación-de-índices-a-tablas-existentes)|[Tabla de características](#características)|
 
 ---

@@ -1,4 +1,15 @@
 # Manejo de datos con funciones 
+
+## Índice de contenidos
+|Funciones
+|---------
+|[Manejo de cadenas](#funciones-para-el-manejo-de-cadenas)
+|[Matemáticas](#funciones-matemáticas)
+|[Manejo de fecha y hora](#funciones-para-el-uso-de-fecha-y-hora)
+|[Control de flujo](#funciones-de-control-de-flujo)
+
+---
+
 **RECUERDE** que NO debe haber espacios entre un nombre de función y los paréntesis porque MySQL puede confundir una llamada 
 a una función con una referencia a una tabla o campo que tenga el mismo nombre de una función.
 
@@ -49,3 +60,5 @@ Similar a la función "if", sólo que se pueden establecer varias condiciones a 
 Por cada valor hay un "when" y un "then"; si encuentra un valor coincidente en algún "when" ejecuta el "then" correspondiente 
 a ese "when", si no encuentra ninguna coincidencia, se ejecuta el "else", si no hay parte "else" retorna "null". Finalmente 
 se coloca "end" para indicar que el "case" ha finalizado.
+
+[Ir al indice](#índice-de-contenidos)

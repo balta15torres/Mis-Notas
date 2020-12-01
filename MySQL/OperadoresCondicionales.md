@@ -1,6 +1,15 @@
-## Operadores Condicionales
+## Operadores condicionales
 
-## Operadores Lógicos
+## Índice de contenidos
+|Operadores condicionales
+|---------
+|[Operadores Lógicos](#operadores-lógicos)
+|[Operadores relacionales](#operadores-relacionales)
+|[Operadores para cadenas de caracteres](#operadores-para-cadenas-de-caracteres)
+
+---
+
+## Operadores lógicos
 Los operadores lógicos se usan para combinar condiciones.
 
 Son los siguientes:
@@ -16,7 +25,9 @@ Son los siguientes:
   (precio<=20);
 ````
 
-## Operadores Relacionales
+[Ir al indice](#índice-de-contenidos)
+
+## Operadores relacionales
 Los operadores relacionales vinculan un campo con un valor para que MySQL compare cada registro (el campo especificado) 
 con el valor dado.
 
@@ -52,6 +63,8 @@ select * from libros where autor not in ('Borges','Paenza');
 select * from libros where autor<>'Borges' and autor<>'Paenza';
 ````
 
+[Ir al indice](#índice-de-contenidos)
+
 ## Operadores para cadenas de caracteres  
 Los operadores relacionales nos permiten comparar valores numéricos y cadenas de caracteres. Pero al realizar la comparación 
 de cadenas, busca coincidencias de cadenas completas.
@@ -78,3 +91,5 @@ Así como "%" reemplaza cualquier cantidad de caracteres, el guión bajo "_" ree
 ````
  select * from libros where autor like "%Carrol_";
 ````
+
+[Ir al indice](#índice-de-contenidos)
