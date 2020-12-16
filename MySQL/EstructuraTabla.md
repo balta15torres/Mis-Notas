@@ -26,7 +26,7 @@ para facilitar la obtención de información de una tabla se utilizan índices.
 |[Mostrar índices](#mostrar-información-sobre-los-índices)                 |[index](#index)                             |
 |[Eliminar índice](#eliminar-índice)                                       |[unique](#unique)                           |
 |[Crear índice a tabla existente](#creación-de-índices-a-tablas-existentes)|[Tabla de características](#características)|
-
+ 
 ---
 ## Columna
 
