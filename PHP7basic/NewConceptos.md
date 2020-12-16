@@ -2,12 +2,12 @@
 En este documento añadí nuevos conceptos respecto a otros lenguajes aprendidos. 
 
 ## Índice
-|Arrays                                     |Funciones                   |Declaraciones                              |Clases                                                     |Herencia                              
-|-------------------------------------------|----------------------------|-------------------------------------------|-----------------------------------------------------------|--------------------------------------
-|                                           |                            |                                           |[Niveles de acceso](#niveles-de-acceso)                    |[Heredar una clase](#heredar-un-clase)
-|[Tipos](#tipos-de-arrays)                  |[Tipos](#tipos-de-funciones)|[Tipo escalar](#declaraciones-tipo-escalar)|[Getters y Setters](#getters-y-setters)                    |
-|[foreach()](#foreach-iteración-de-un-array)|                            |                                           |[Crear intancia](#crear-intancia)                          |
-|                                           |                            |                                           |[Acceder a Static](#acceder-a-propiedades-y-métodos-static)|
+|Arrays                                     |Funciones                   |Declaraciones                              |Clases                                                     |Herencia                              |Cookie y Session
+|-------------------------------------------|----------------------------|-------------------------------------------|-----------------------------------------------------------|--------------------------------------|---
+|[Tipos](#tipos-de-arrays)                  |[Tipos](#tipos-de-funciones)|[Tipo escalar](#declaraciones-tipo-escalar)|[Niveles de acceso](#niveles-de-acceso)                    |[Heredar una clase](#heredar-un-clase)|[Cookie](#cookie)
+|[foreach()](#foreach-iteración-de-un-array)|                            |                                           |[Getters y Setters](#getters-y-setters)                    |                                      |[Session](#session)
+|                                           |                            |                                           |[Crear intancia](#crear-intancia)                          |                                      |
+|                                           |                            |                                           |[Acceder a Static](#acceder-a-propiedades-y-métodos-static)|                                      |
 
 
 ---
@@ -286,6 +286,82 @@ class Vendedor extends Persona{
     }
 
 }
+````
+
+[Ir al indice](#índice)
+
+## Cookie y Session
+
+### Cookie
+Son un tipo de variables que se utiliza para guardar información en el lado del cliente. Para crear una cookie se utiliza 
+( setcookie(); ). Es importante saber que no es aconsejable guardar información delicada, ya que se guarda en el lado del 
+cliente. 
+
+- Crear un cookie: utilizamos el método ( setcookie(); ) y le pasamos como parámetros el nombre de la cookie, el valor y el 
+timepo que tardará en expirar dicha cookie.
+````
+setcookie('nombreCookie', 'valorCokkie', time());
+````
+
+- Modificar un cookie: podemos modificar una cookie de con la misma sintaxis que la creamos y podriamos modificar dicha 
+cookie después de que haya sido inicializada.
+````
+setcookie('nombreCookie', 'nuevoValorCokkie');
+````
+  
+- Acceder a un cookie: podemos acceder a la cookie creada con la variable reservada ( $_COOKIE  )
+````
+$_COOKIE[''nombre_de_cookie]
+````
+
+- Eliminar un cookie: con el método ( unset(); ),añadiendo el cookie que queremos eliminar y el el método ( setcookie(); ) 
+con los siguiente parámetros:
+````
+unset($_COOKIE['nombreCookie']);
+setcookie('nombreCookie', null, -1);
+````
+
+[Ir al indice](#índice)
+
+### Session
+Son un tipo de variables que se utiliza para guardar información en el lado del servidor. Para inicializar una sesión se 
+utiliza ( session_start(); ) en el archivo que queremos que utilice dicha session y así podremos crear, eliminar y modificar 
+una sesión.
+
+- Inicializar sesion:
+````
+session_start();
+````
+**Recuerda que para utilizar en un archivo una sesion debes inicializar con ( session_start(); )**
+
+- Crear una sesión: se crea utilizando una variable reservada ( $_SESSION )
+````
+$_SESSION['nombreSesion'] = 'valor_de_sesion';
+````
+- Modificar una sesión: podemos modificar una sesión de con la misma sintaxis que la creamos y podriamos modificar dicha 
+sessión después de que haya sido inicializada.
+````
+$_SESSION['nombreSesion'] = 'nuevo_valor_de_sesion';
+````
+- Eliminar una sesión: para borrar todas las sesiones que han sido inicializadas.
+````
+session_destroy();
+````
+Pero también podemos eliminar una sesión concreta, con el método ( unset(); ) y añadiendo la sesión que queremos eliminar:
+````
+unset($_SESSION['nombreSesion']);
+````
+
+Otra de las novedades de PHP7, es que podemos anular las [directivas de configuración de sesión](https://www.php.net/manual/es/session.configuration.php), 
+establecidas en el archivo 
+( php.init ) pasandole a la inicialización de la sesión ( session_start(); ) una matríz de opciones.
+Ejemplo:
+````
+session_start(['name' => 'NOMBRE_SESSION']);
+````
+También podemos saber el estado de nuestra sesión con:
+````
+session_status(); 
 ````
 
 [Ir al indice](#índice)
