@@ -2,12 +2,14 @@
 
 <a name="top"></a>
 ## Índice de contenidos
-|Conceptos generales              |
-|---------------------------------|
-|[Especificación](#especificación)|
-|[Diseño](#diseño)                |
-|[Construcción](#construcción)    |
-|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|
+|[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|
+|---                                                                  |---
+|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascadawaterfall)
+|[Diseño](#diseño)                                                    |[Iterativo](#iterativo)
+|[Construcción](#construcción)                                        |[En V](#en-v)
+|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentesCBSE)
+|                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)
+
 
 ## Conceptos generales:
 - Especificación
@@ -82,3 +84,127 @@ en las necesidades del usuario.
 4. preventivo: revisión constante del software para detectar posibles fuentes de problemas que puedan surgir en el futuro.
 
 [Ir al indice](#top)
+
+## Ciclo de vida del software y Tipos de Metodologías
+El ciclo del vida del software es una estructura aplicada al desarrollo de un producto de software. Hay varios modelos a seguir
+para el establecimiento de un proceso para el desarrollo de software, cada uno de los cuales describe un enfoque diferente para
+diferentes actividades que tienen lugar durante el proceso. Algunos autores consideran un modelo de ciclo de vida un término más
+general que un determinado proceso para el desarrollo de software. Por ejemplo, hay varios procesos de desarrollo de software
+específicos que se ajustan a un modelo de ciclo de vida de espiral.
+
+Las metodologías de ingeniería software se propusieron con la finalidad de establecer unos pasos a la hora de desarrollar un
+programa de forma que evitara, en la medida de lo posible, que el software se volviera inviable de desarrollar a mitad del proceso.
+
+[Ir al indice](#top)
+
+### En cascada (waterfall)
+El ciclo de vida inicialmente propuesto por Royce en 1970, fue adaptado para el software a partir de ciclos de vida de otras
+ramas de la ingeniería. Es el primero de los propuestos y el más ampliamente seguido por las organizaciones (se estima que el
+90% de los sistemas han sido desarrollados así).
+
+![Modelo de ciclo de vida en cascada](../images/1.4cascada.png)
+
+Este modelo admite la posibilidad de hacer iteraciones, por ejemplo; durante las modificaciones que se hacen en el mantenimiento se 
+puede ver la necesidad de cambiar algo en el diseño, lo cual significa que se harán los cambios necesarios en la codificación y se 
+tendrán que realizar de nuevo las pruebas y así hasta recorrer de nuevo el resto de las etapas comprobando si se puede pasar a la siguiente. 
+
+Trabaja en base a documentos, es decir, la entrada y la salida de cada estapa es un tipo de documento específico. Idealmente,
+cada estapa podría hacerla un equipo diferente. Los documentos son:
+
+- Análisis: toma como entrada una descripción en lenguaje natural de lo que quiere el cliente. Produce el S.R.D. (Software
+Requirements Document).
+
+- Diseño: su entrada es el S.R.D. Produce el S.D.D. (Software Design Document)
+
+- Codificación: a partir del S.D.D. produce módulos. En esta fase se hacen también pruebas de unidad.
+
+- Pruebas: a partir de los módulos probados se realiza la integración y pruebas de todo el sistema. El resultado es el producto final.
+
+##### Tipos de proyectos para los que es adecuado
+- Aquellos para los que se dispone de todas las especificaciones desde el principio, por ejemplo, los de reingeniería.
+
+- Se está desarrollando un tipo de producto que no es novedoso.
+
+- Proyectos complejos que se entienden bien desde el principio
+
+> [ventajas y desventajas](https://sites.google.com/site/proyectoadpmodelosdedesarrollo/home/modelo-en-cascada/modelo-en-cascada-ventajas-y-desventajas) 
+
+[Ir al indice](#top)
+
+### Iterativo
+Para entender los requisitos antes de entregar el producto se puede hacer un desarrollo iterativo durante las fases de análisis y 
+diseño global. Esto consistiría en:
+
+1. Preguntar al usuario.
+2. Hacer el diseño global que se desprende del punto anterior.
+3. Hacer un prototipo de interfaz de usuario, entrevistas con los usuarios, etc y volver con ello al primer punto para identificar más
+requisitos o corregir malentendidos.
+
+El resto es igual al ciclo de vida en cascada
+
+[Ir al indice](#top)
+
+### Incremental
+En este caso se va creando el sistema añadiendo pequeñas funcionalidades. Cada uno de los pequeños incrementos es parecido
+a lo que ocurre dentro de la fase de mantenimiento.
+
+Hay dos partes en el ciclo de vida, similares al [Iterativo](#iteratico). Por un lado está el análisis y el diseño global. 
+Por otra parte están los pequeños incrementos, con las fases de diseño detallado, codificación y mantenimiento.
+
+![Modelo de ciclo de vida incremental](../images/1.4incremental.png)
+
+>  La ventaja de este método es que no es necesario tener todos los requisitos en un principio. El inconveniente es que los errores 
+>en la detección de requisitos se encuentran tarde.
+
+[Ir al indice](#top)
+
+### En V
+Propuesto por Alan Davis, tiene las mismas fases que el [Incremental](#incremental), pero se considera el nivel de abstracción de cada una. 
+Una fase además de utilizarse como entrada para la siguiente, sirve para validar o verificar otras fases posteriores.
+
+![Modelo de ciclo de vida en V](../images/1.4v.png)
+
+[Ir al indice](#top)
+
+### Basado en componentes (CBSE)
+Los tipos de ciclos de vida que se han visto hasta ahora son relativos al análisis y diseño estructurados, pero los objetos tienen
+una particularidad, y es que están basados en componentes que se relacionan entre ellos a través de interfaces, son mas modulares y 
+por lo tanto el trabajo se puede dividir en un conjunto de miniproyectos. Es típico en una metodología de diseño orientado a objetos 
+es iterativo e incremental.
+
+Las metas de la CBSE son la reutilización, la adaptación y la extensión:
+- Soportar el desarrollo de sistemas construidos mediante componentes.
+
+- El desarrollo de componentes como una entidad reutilizable. Un componente es reutilizable en la medida en que sus servicios
+pueden ser utilizados por otro software.
+
+- El mantenimiento y mejoramiento de sistemas mediante la personalización y sustitución de componentes. Un componente es
+adaptable si su proveedor ha previsto los posibles cambios que puede sufrir dicho componente y es extensible si su
+proveedor proporciona los mecanismos para modificar los servicios que ofrece el componente.
+
+[Ir al indice](#top)
+
+### Desarrollo rápido (RAD)
+El desarrollo de software de "métodos rápidos" (también Modelo rápido ó AG) definido por James Martin a principios de la década de 1980, 
+consiste en un ciclo de desarrollo corto basado en tres fases (Requisitos, Diseño y Construcción) con un plazo de entrega ideal de 90 
+a 120 días como máximo reduce el tiempo del ciclo de vida del software.
+
+Para el desarrollo rápido la primera instancia es una versión del prototipo y después integrar la funcionalidad de manera iterativa para 
+satisfacer los requisitos del cliente y controlar todo el ciclo de desarrollo.
+
+Los métodos rápidos se originaron por la inestabilidad del entorno técnico y el hecho de que el cliente a veces es incapaz de
+definir cada uno de los requisitos al inicio del proyecto. El término "rápido" es una referencia a la capacidad de adaptarse a los
+cambios de contexto y a los cambios de especificaciones que ocurren durante el proceso de desarrollo. En el año 2001, se redacto el 
+manifiesto ágil, con los siguientes puntos principales:
+- Individuos e interacciones en lugar de procesos y herramientas.
+
+- Desarrollo de software en lugar de documentación exhaustiva.
+
+- Trabajo con el cliente en lugar de negociaciones contractuales.
+- Apertura para los cambios en lugar de cumplimiento de planes poco flexibles.
+
+> Con la ayuda de los métodos rápidos, el cliente tiene control total de su proyecto y logra una rápida implementación del
+software, permitiendo al usuario involucrarse desde el inicio del proyecto.
+
+[Ir al indice](#top)
+
