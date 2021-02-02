@@ -4,10 +4,10 @@
 ## Índice de contenidos
 |[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|
 |---                                                                  |---
-|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascadawaterfall)
+|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascada-waterfall)
 |[Diseño](#diseño)                                                    |[Iterativo](#iterativo)
 |[Construcción](#construcción)                                        |[En V](#en-v)
-|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentesCBSE)
+|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)
 |                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)
 
 
