@@ -256,8 +256,7 @@ decir, realiza la negación de exp1.
 Estas estructuras sirven para repetir un número determinado de veces un conjunto de instrucciones o, sin conocer dicho número, 
 desear repetirlas mientras se cumpla cierta condición. Esto quiere decir que existen dos tipos de estructuras de repetición:
 
-- ##### for :
-
+##### for:
 Especificámos el número de veces que quiere que se repita un conjunto de instrucciones. Por lo tanto, ese número debe ser conocido. 
 La sintaxis correcta de esta estructura de repetición es:
 
@@ -270,7 +269,7 @@ valor inicial al valor final, es decir, en el cual ya no se realizarán más rep
 
 En cada vuelta del bucle se ejecutará 1 vez lo que diga “acciones”
 
-- ##### while :
+##### while:
 Si no sabe cuántas veces se va a repetir el bucle. Utilizando la estructura while, usted podrá repetir un conjunto de instrucciones 
 mientras se cumpla cierta condición. La sintaxis correcta de esta estructura es:
 
