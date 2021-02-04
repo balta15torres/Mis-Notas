@@ -2,13 +2,13 @@
 
 <a name="top"></a>
 ## Índice de contenidos
-|[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|
-|---                                                                  |---
-|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascada-waterfall)
-|[Diseño](#diseño)                                                    |[Iterativo](#iterativo)
-|[Construcción](#construcción)                                        |[En V](#en-v)
-|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)
-|                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)
+|[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|[Ingeniería estructurada](#ingeniería-del-software-estructurada)|
+|---                                                                  |---                                                                                                      |---
+|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascada-waterfall)                                                          |[Estructura secuencial](#estructura-secuencial)
+|[Diseño](#diseño)                                                    |[Iterativo](#iterativo)                                                                                  |[Estructura condicionales](#estructura-condicionales)
+|[Construcción](#construcción)                                        |[En V](#en-v)                                                                                            |[Estructuras de repetición (bucles)](#estructuras-de-repetición-bucles)
+|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)                                              |[Bucle for](#for)
+|                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)                                                        |[Bucle while](#while)
 
 
 ## Conceptos generales:
@@ -205,6 +205,88 @@ manifiesto ágil, con los siguientes puntos principales:
 
 > Con la ayuda de los métodos rápidos, el cliente tiene control total de su proyecto y logra una rápida implementación del
 software, permitiendo al usuario involucrarse desde el inicio del proyecto.
+
+[Ir al indice](#top)
+
+## Ingeniería del software estructurada
+La ingeniería estructurada se basa en las estructuras de control que van a determinar el orden en el que se ejecutan las
+instrucciones de un programa.
+
+[Ir al indice](#top)
+
+### Estructura secuencial
+La estructura más básica y fundamental es la secuencial, es decir, las órdenes se ejecutarán secuencialmente en el orden en el
+que aparezcan.    
+
+![Estructura secuencial](../images/1.5secuencial.png)
+
+[Ir al indice](#top)
+
+### Estructura condicionales
+Las estructura condicionales nos permiten ejecutar un bloque de instrucciones en función de que se cumplan o no una o varias condiciones. 
+La estructura de control clásica es:
+
+![Estructura condicionales](../images/1.5condicionales.png)
+
+Donde la cláusula else es opcional.
+
+Debemos entender esta estructura del siguiente tipo: Si condición es verdadera, se ejecutará acciones1, en otro caso, se ejecutará acciones2.
+
+Hay que destacar que podemos hacer estructuras más complejas de este tipo, sin más que introducir más if/else dentro de otros
+if/else
+
+Las condiciones también suelen llamarse expresiones lógicas porque sólo pueden dar como resultado los valores verdadero o
+falso. Para ello podemos utilizar los operadores de comparación para crear expresiones: == (igual a), != (distinto a), 
+< (menor que), > (mayor que), <= (menor o igual que), >= (mayor o igual que), también se puede utilizar los operadores lógicos 
+AND, OR y NOT.
+
+En JavaScript el operador AND se representa con los símbolos &&, OR con || y NOT con !
+Así, una expresión del tipo: exp1 AND exp2 se evalúa a verdadero sólo en el caso de que tanto exp1 como exp2 se evalúen a
+verdadero. En cualquier otro caso, la expresión se evaluará a falso.
+
+Sin embargo, exp1 OR exp2 se evalúa a verdadero en el caso de que bien exp1 o bien exp2 se evalúen a verdadero. En el caso 
+de que ninguna se evalúe a verdadero, la expresión total se evaluará a falso.
+
+Finalmente, NOT exp1 se evalúa a verdadero si exp1 se evalúa a falso y se evalúa a falso si exp1 se evalúa a verdadero. Es
+decir, realiza la negación de exp1.
+
+[Ir al indice](#top)
+
+### Estructuras de repetición (bucles)
+Estas estructuras sirven para repetir un número determinado de veces un conjunto de instrucciones o, sin conocer dicho número, 
+desear repetirlas mientras se cumpla cierta condición. Esto quiere decir que existen dos tipos de estructuras de repetición:
+
+- ##### for :
+
+Especificámos el número de veces que quiere que se repita un conjunto de instrucciones. Por lo tanto, ese número debe ser conocido. 
+La sintaxis correcta de esta estructura de repetición es:
+
+![Bucle for](../images/1.5for.png)
+
+Debemos entender esta estructura como: La “expresión” suele consistir en dar un valor inicial a una variable.
+
+Este valor se va comparando en cada una de las repeticiones según la “condición” establecida. “Operación” permite acercar el
+valor inicial al valor final, es decir, en el cual ya no se realizarán más repeticiones.
+
+En cada vuelta del bucle se ejecutará 1 vez lo que diga “acciones”
+
+- ##### while :
+Si no sabe cuántas veces se va a repetir el bucle. Utilizando la estructura while, usted podrá repetir un conjunto de instrucciones 
+mientras se cumpla cierta condición. La sintaxis correcta de esta estructura es:
+
+![Bucle while](../images/1.5while.png)
+
+Que lo que hará será ejecutar las acciones hasta que la condición sea Falsa.
+
+En ocasiones, usted deseará salir de un bucle aunque la condición de prueba no se haya cumplido. En estos casos puede utilizar la 
+sentencia break si desea salir completamente del bucle o continúe si lo que quiere es no ejecutar el resto de sentencias del 
+cuerpo del bucle, sino pasar a la siguiente repetición. 
+
+Puedes anidar bucles en el interior de otros bucles. En estos casos, para cada repetición del bucle exterior, se ejecuta
+completamente el bucle interior.
+
+Tenga en cuenta que la incorporación de bucles en el interior de otros bucles puede hacer que la ejecución del código consuma
+mucho tiempo.
 
 [Ir al indice](#top)
 
