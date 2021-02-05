@@ -2,13 +2,13 @@
 
 <a name="top"></a>
 ## Índice de contenidos
-|[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|[Ingeniería estructurada](#ingeniería-del-software-estructurada)|
-|---                                                                  |---                                                                                                      |---
-|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascada-waterfall)                                                          |[Estructura secuencial](#estructura-secuencial)
-|[Diseño](#diseño)                                                    |[Iterativo](#iterativo)                                                                                  |[Estructura condicionales](#estructura-condicionales)
-|[Construcción](#construcción)                                        |[En V](#en-v)                                                                                            |[Estructuras de repetición (bucles)](#estructuras-de-repetición-bucles)
-|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)                                              |[Bucle for](#for)
-|                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)                                                        |[Bucle while](#while)
+|[Conceptos generales](#conceptos-generales)                          |[Ciclo de vida del software y Tipos de Metodologías](#ciclo-de-vida-del-software-y-tipos-de-metodologías)|[Ingeniería estructurada](#ingeniería-del-software-estructurada)       |[Paradigma de orientación a objetos](#paradigma-de-orientación-a-objetos)|
+|---                                                                  |---                                                                                                      |---                                                                    |---
+|[Especificación](#especificación)                                    |[En cascada (waterfall)](#en-cascada-waterfall)                                                          |[Estructura secuencial](#estructura-secuencial)                        |[Clases y objetos](#clases-y-objetos)
+|[Diseño](#diseño)                                                    |[Iterativo](#iterativo)                                                                                  |[Estructura condicionales](#estructura-condicionales)                  |[Encapsulamiento y ocultación](#encapsulamiento-y-ocultación)
+|[Construcción](#construcción)                                        |[En V](#en-v)                                                                                            |[Estructuras de repetición (bucles)](#estructuras-de-repetición-bucles)|[Organización de los objetos](#organización-de-los-objetos)
+|[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)                                              |[Bucle for](#for)                                                      |[Herencia y polimorfismo](#herencia-y-polimorfismo)
+|                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)                                                        |[Bucle while](#while)                                                  |[set y get](#propiedades-selectores-get-y-modificadores-set)
 
 
 ## Conceptos generales:
@@ -286,6 +286,126 @@ completamente el bucle interior.
 
 Tenga en cuenta que la incorporación de bucles en el interior de otros bucles puede hacer que la ejecución del código consuma
 mucho tiempo.
+
+[Ir al indice](#top)
+
+## Paradigma de orientación a objetos
+La orientación a objetos es una forma de programar que rompe con la forma de programar clásica. En un entorno clásico de programación 
+el problema o sistema que se está analizando se divide en funciones: este sistema hace esto, esto y esto.
+
+Para llevar a cabo el análisis con la programación orientada a objetos hay que tener en cuenta que los programas se codifican
+pensando en objetos que interactúan. Los objetos tendrán unas determinadas propiedades y serán capaces de hacer ciertas cosas 
+mediante los métodos que se les hayan definido.
+
+Si se hace un buen diseño de los objetos y de las clases, se podrán usar en nuevos programas y proyectos fácilmente, favoreciendo la reusabilidad.
+
+[Ir al indice](#top)
+
+### Metodologías de la programación orientada a objetos
+
+#### Clases y objetos
+La orientación a objetos promete mejoras de amplio alcance en la forma de diseño, desarrollo y mantenimiento del software 
+ofreciendo una solución a la falta de portabilidad del código y reusabilidad, código que es difícil de modificar, ciclos de 
+desarrollo largos y técnicas de codificación no intuitivas.
+
+Un lenguaje orientado a objetos tiene tres características básicas: debe estar basado en objetos, basado en clases y capaz 
+de tener herencia de clases.
+
+Podemos definir un objeto como un conjunto complejo de datos y programas que poseen estructura y forman parte de una organización.
+Esta definición específica varias propiedades importantes de los objetos. En primer lugar, un objeto no es un dato simple, sino
+que contiene en su interior cierto número de componentes bien estructurados. En segundo lugar, cada objeto no es un ente
+aislado, sino que forma parte de una organización jerárquica o de otro tipo.
+
+Estructura de un objeto; un objeto puede considerarse como una especie de cápsula dividida en tres partes y cada una desempeña 
+un papel totalmente independiente:
+
+1. Relaciones: permiten que el objeto se inserte en la organización y están formadas esencialmente por punteros a otros objetos.
+
+2. Propiedades: distinguen un objeto determinado de los restantes que forman parte de la misma organización y tiene valores que 
+dependen de la propiedad de que se trate. Las propiedades de un objeto pueden ser heredadas a sus descendientes en la organización.
+
+3. Métodos: son las operaciones que pueden realizarse sobre el objeto, que normalmente estarán incorporados en forma de programas 
+(código) que el objeto es capaz de ejecutar y que también pone a disposición de sus descendientes a través de la herencia.
+
+[Ir al indice](#top)
+
+#### Encapsulamiento y ocultación
+Cada objeto es una estructura compleja en cuyo interior hay datos y programas, todos ellos relacionados entre sí. Esta propiedad 
+(encapsulamiento), es una de las características fundamentales en la OOP.
+
+Los objetos son inaccesibles, e impiden que otros objetos, los usuarios, o incluso los programadores conozcan cómo está
+distribuida la información o qué información hay disponible. Esta propiedad de los objetos se denomina ocultación de la
+información.
+
+Para poder conocer lo necesario respecto a un objeto y a lo que contiene, las peticiones de información a un objeto deben 
+realizarse a través de mensajes dirigidos a él, con la orden de realizar la operación pertinente. La respuesta a estas órdenes 
+será la información requerida, siempre que el objeto considere que quien envía el mensaje está autorizado para obtenerla.
+
+El hecho de que cada objeto sea una cápsula facilita enormemente que un objeto determinado pueda ser transportado a otro
+punto de la organización, o incluso a otra organización totalmente diferente que precise de él. Si el objeto ha sido bien construido,
+sus métodos seguirán funcionando en el nuevo entorno sin problemas. Esta cualidad hace que la OOP sea muy apta para la
+reutilización de programas.
+
+[Ir al indice](#top)
+
+#### Organización de los objetos
+En principio, los objetos forman siempre una organización jerárquica, en el sentido de que ciertos objetos son superiores a otros
+de cierto modo.
+
+Existen varios tipos de jerarquías: serán simples cuando su estructura pueda ser representada por medio de un "árbol". En otros
+casos puede ser más compleja. En estas estructuras puede distinguirse tres niveles de objetos:
+
+- La raíz de la jerarquía. Se trata de un objeto único y especial. Este se caracteriza por estar en el nivel más alto de la 
+estructura y suele recibir un nombre muy genérico, que indica su categoría especial, como por ejemplo objeto madre, Raíz o Entidad.
+
+- Los objetos intermedios. Son aquellos que descienden directamente de la raíz y que a su vez tienen descendientes.
+Representan conjuntos o clases de objetos, que pueden ser muy generales o muy especializados, según la aplicación.
+Normalmente reciben nombres genéricos que denotan al conjunto de objetos que representan, por ejemplo, VENTANA,
+CUENTA, FICHERO. En un conjunto reciben el nombre de clases o tipos si descienden de otra clase o subclase.
+
+- Los objetos terminales. Son todos aquellos que descienden de una clase o subclase y no tienen descendientes. Suelen
+llamarse casos particulares, instancias o ítems porque representan los elementos del conjunto representado por la clase o
+subclase a la que pertenecen
+
+[Ir al indice](#top)
+
+#### Herencia y polimorfismo 
+En orientación a objetos la herencia es, después de la agregación o composición, el mecanismo más utilizado para alcanzar
+algunos de los objetivos como lo son la reutilización y la extensibilidad. La herencia facilita la creación de objetos a partir 
+de otros ya existentes (ya comprobados y verificados) e implica que una subclase obtiene todo el comportamiento (métodos) y 
+eventualmente los atributos (variables) de su superclase.
+
+Es la relación entre una clase general y otra clase más específica. Por ejemplo: Si declaramos una clase párrafo derivada de una
+clase texto, todos los métodos y variables asociadas con la clase texto, son automáticamente heredados por la subclase párrafo. 
+
+Es la relación entre una clase general y otra clase más específica. Por ejemplo: Si declaramos una clase párrafo derivada de una
+clase texto, todos los métodos y variables asociadas con la clase texto, son automáticamente heredados por la subclase párrafo.
+
+En los lenguajes que cuentan con un sistema de tipos fuerte y estrictamente restrictivo con el tipo de datos de las variables, la
+herencia suele ser un requisito fundamental para poder emplear el Polimorfismo, al igual que un mecanismo que permita decidir en
+tiempo de ejecución qué método debe invocarse en respuesta a la recepción de un mensaje, conocido como enlace tardío (late
+binding) o enlace dinámico (dynamic binding).
+
+En programación orientada a objetos el polimorfismo se refiere a la posibilidad de enviar un mensaje a un grupo de objetos cuya
+naturaleza puede ser heterogénea. El único requisito que deben cumplir los objetos que se utilizan de manera polimórfica es saber
+responder al mensaje que se les envía.
+
+[Ir al indice](#top)
+
+#### Propiedades: selectores (get) y modificadores (set)
+- get permite al usuario recuperar el valor de la propiedad, leerlo, por lo que su salida debe ser correspondiente con la que se
+espera de la propiedad (por ejemplo, no tendría sentido que la propiedad “nombre” del ejemplo devolviese un número). Si
+sólo creamos una función get para una propiedad, ésta es de sólo lectura.
+
+- set es usado para darle un valor a la propiedad, normalmente se añaden aquí los controles para asegurarse que el valor que
+se asigna es del tipo deseado (y evitar que la clase colapse por un error de tipo de datos). La función de set, al ser para
+escribir en la propiedad no devuelve ningún tipo de datos, pero debe tener un parámetro que es el valor que se pasará a la
+variable. Al contrario de get, no puede haber una clase de sólo escritura (después de todo, no tiene ningún sentido tener una
+propiedad a la que se le pueda asignar un valor pero este no pueda ser recuperado).
+
+> Un nuevo paso en la abstracción de paradigmas de programación es la Programación Orientada a Aspectos (POA). Aunque es
+  todavía una metodología en estado de maduración, cada vez atrae a más investigadores e incluso proyectos comerciales en todo el
+  mundo.
 
 [Ir al indice](#top)
 
