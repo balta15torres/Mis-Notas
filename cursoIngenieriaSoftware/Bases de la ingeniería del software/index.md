@@ -393,11 +393,11 @@ responder al mensaje que se les envía.
 [Ir al indice](#top)
 
 #### Propiedades: selectores (get) y modificadores (set)
-- get permite al usuario recuperar el valor de la propiedad, leerlo, por lo que su salida debe ser correspondiente con la que se
+- get: permite al usuario recuperar el valor de la propiedad, leerlo, por lo que su salida debe ser correspondiente con la que se
 espera de la propiedad (por ejemplo, no tendría sentido que la propiedad “nombre” del ejemplo devolviese un número). Si
 sólo creamos una función get para una propiedad, ésta es de sólo lectura.
 
-- set es usado para darle un valor a la propiedad, normalmente se añaden aquí los controles para asegurarse que el valor que
+- set: es usado para darle un valor a la propiedad, normalmente se añaden aquí los controles para asegurarse que el valor que
 se asigna es del tipo deseado (y evitar que la clase colapse por un error de tipo de datos). La función de set, al ser para
 escribir en la propiedad no devuelve ningún tipo de datos, pero debe tener un parámetro que es el valor que se pasará a la
 variable. Al contrario de get, no puede haber una clase de sólo escritura (después de todo, no tiene ningún sentido tener una
