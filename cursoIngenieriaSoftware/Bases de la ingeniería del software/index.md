@@ -10,6 +10,14 @@
 |[Validación,verificación,pruebas](#validación-verificación-y-pruebas)|[Basado en componentes (CBSE)](#basado-en-componentes-cbse)                                              |[Bucle for](#for)                                                      |[Herencia y polimorfismo](#herencia-y-polimorfismo)
 |                                                                     |[Desarrollo rápido (RAD)](#desarrollo-rápido-rad)                                                        |[Bucle while](#while)                                                  |[set y get](#propiedades-selectores-get-y-modificadores-set)
 
+## RECUERDA
+> - Especificación: Es la tarea de escribir detalladamente el software a ser desarrollado, en una forma matemáticamente rigurosa.
+> - Construcción: Es la tarea de traducir un diseño a código, puede ser la parte más obvia del trabajo de ingeniería del software, 
+> pero no necesariamente es la que demanda mayor trabajo ni la más complicada.
+> - Mantenimiento: Mantener y mejorar el software para solventar errores descubiertos y tratar con nuevos requisitos.
+> - El ciclo del vida del software: es una estructura aplicada al desarrollo de un producto de software.
+> - Hoy en día el paradigma de orientación a objetos es el más utilizado para programar y prácticamente lo podemos encontrar
+  en la mayoría de los lenguajes de programación más utilizados: Java, PHP, C++, etc.
 
 ## Conceptos generales:
 - Especificación
