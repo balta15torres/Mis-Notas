@@ -9,6 +9,7 @@
 |[Lenguaje de programación](#lenguaje-de-programación)
 |[Metodologías](#metodologías-de-desarrollo-software) 
 |[UML](#lenguaje-uml)
+|[Proceso Unificado de Desarrollo](#proceso-unificado-de-desarrollo)
 
 ## RECUERDA
 > - Una metodología de desarrollo de software se refiere a un framework que es usado para estructurar, planear y controlar el
@@ -105,17 +106,66 @@ sistemas GNU/Linux ejecutarse también en un sistema operativo Window. Esto perm
 [Ir al indice](#top)
 
 ### Lenguaje UML
-Es un lenguaje para especificar, construir, visualizar y documentar los artefactos de un sistema de software orientado a objeto. 
+Es un lenguaje de comunicación para especificar, construir, visualizar y documentar los artefactos de un sistema de software orientado a objeto. 
+
 > Un artefacto es una información que es utilizada o producida mediante un proceso de desarrollo de software.
 
-UML se quiere convertir en un lenguaje estándar con el que sea posible modelar todos los componentes del proceso de desarrollo
-de aplicaciones. Pero hay que tener en cuenta un aspecto importante del modelo: no pretende definir un modelo estándar de desarrollo, 
-sino únicamente un lenguaje de modelado.
+UML se quiere convertir en un lenguaje estándar con el que sea posible modelar (por modelos) todos los componentes del proceso de desarrollo
+de aplicaciones. Los modelos son simplificaciones de conceptos y realidades, que nos permiten reconocimiento efectivo y sencillo 
+de los mismos. Al contar con unidades modeladas, manejar la complejidad de un sistema o el desarrollo de un software se convierte 
+en una tarea mucho más sencilla, sin depender del lenguaje de desarrollo en absoluto para tal labor. Pero hay que tener en 
+cuenta un aspecto importante del modelo: no pretende definir un modelo estándar de desarrollo, sino únicamente un lenguaje de modelado.
 
 En UML los procesos de desarrollo son diferentes según los distintos dominios de trabajo; no puede ser el mismo el proceso 
 para crear una aplicación en tiempo real, que el proceso de desarrollo de una aplicación orientada a gestión, por poner un ejemplo.
 
 Las diferencias son muy marcadas y afectan a todas las fases del proceso. El método del UML recomienda utilizar los procesos
 que otras metodologías tienen definidos.
+
+> El UML surge de la necesidad de un lenguaje que no sólo comunique las ideas a otros desarrolladores, sino para que también  
+  sirviera de apoyo a la hora de analizar los distintos problemas que surgen a lo largo de la fase de desarrollo de un proyecto 
+  software. La opción más eficiente para ello fue desarrollar un lenguaje con una notación gráfica muy clara que permitiera 
+  representar con mayor o menor abstracción todas las fases del proyecto de software.
+  
+> En 1994 comenzó a surgir este lenguaje de manos de Rumbaugh y Boosch, dos investigadores de metodología de software de 
+  renombre. Se marcaron el objetivo de unificar tanto el método de Boosch y el OMT (Object modelling Tool), surgiendo el primer 
+  esbozo de esta unión el año siguiente. Jacobson se unió a la empresa y sus ideas fueron incluidas, mejorando este futuro lenguaje. 
+  No fue un desarrollo cerrado, sino que se abrió la posibilidad de que otras empresas colaboraran y aportaran sus ideas, lo que llevó 
+  a la primera versión de UML. Esta primera versión se convirtió en 1997 en uno de los estándares de OMG (Object Management 
+  Group)
+
+[echale un vistazo al Análisis orientado a objetos con UML](https://github.com/balta15torres/Mis-Notas/blob/master/cursoIngenieriaSoftware/OOP/index.md#análisis-orientado-a-objetos-UML)
+
+[Ir al indice](#top)
+
+### Proceso Unificado de Desarrollo
+UML en primera instancia es independiente del proceso de desarrollo que se siga. Aun así, los mismos creadores de UML
+recomiendan esta metodología de desarrollo.
+
+Este proceso se basa en componentes. A efectos de producción, cualquier sistema software es una amalgama de diferentes
+componentes software que están interrelacionados e interconectados mediante interfaces bien definidas.
+
+Este proceso hace del UML para expresar gráficamente todos los esquemas de este sistema, si bien el proceso en sí no viene 
+definido por esto, sino por tres aspectos fundamentales:
+
+- Se dirige a los casos de uso: los desarrolladores deben basarse siempre en ellos, creando los modelos para llevarlos a cabo.
+
+- Centrado en la arquitectura: las características más significativas del sistema deben estar claramente representados.
+
+- Iterativo e incremental: siempre que se trabaja con proyectos informáticos complejos, es más viable realizar una división de
+los mismos por fases, en las que cada fase incrementa y revisa la anterior.
+
+Podemos dividir el Proceso Unificado en diferentes fases:
+
+1. Se define el proyecto, así como sus características más destacables, como las posibles arquitecturas, casos de uso, estimación de costes, etc.
+
+2. Vamos obteniendo una visión más refinada del proyecto, en la que ya tenemos la mayoría de requisitos del sistema, los riesgos, 
+validación de la estructura y arquitectura base.
+
+3. Se construye el producto hasta llegar a una versión que cumpla una serie de requisitos mínimos. Dado el ámbito de esta fase, 
+es la más larga del proceso, ya que aquí se afinan errores, casos de uso, iteraciones, etc.
+
+4. Finalmente, se despliega el producto al usuario final, sirviéndonos del feedback de los usuarios para refinar el sistema 
+en posteriores iteraciones.
 
 [Ir al indice](#top)

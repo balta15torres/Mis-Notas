@@ -9,6 +9,16 @@
 |[Diagrama de clases](#diagrama-de-clases)
 |[Encapsulamiento](#encapsulamiento)
 |[Herencia](#herencia)
+|[Análisis orientado a objetos (UML)](#análisis-orientado-a-objetos-UML)
+
+## RECUERDA
+> - Por protección de nuestros objetos, no es convenientemente que sus datos miembros o estado, sean accesibles de cualquier 
+> forma y en cualquier momento.
+> - El comportamiento de un objeto viene definido por la serie de procedimientos o funciones que definimos éste puede desarrollar.
+> - El UML surge de la necesidad de un lenguaje que no sólo comunique las ideas a otros desarrolladores, sino para que también 
+> sirviera de apoyo a la hora de analizar los distintos problemas que surgen a lo largo de la fase de desarrollo de un proyecto software. 
+> - Los métodos constructores son un tipo de específico de método que siempre tiene el mismo nombre de la clase y se utiliza para 
+> construir objetos de esa clase.
 
 ## OOP
 En la programación orientada a objetos, el sistema se divide en objetos o entidades que podemos encontrar en la realidad.
@@ -136,4 +146,36 @@ a la vez, un conflicto, ya que el método Acelerar() lo tiene definido dos veces
 
 [Ir al indice](#top)
 
+### Análisis orientado a objetos (UML)
+[UML](https://github.com/balta15torres/Mis-Notas/blob/master/cursoIngenieriaSoftware/Metodologi%CC%81as%20de%20desarrollo/index.md#lenguaje-uml)  
+tiene unos objetivos básicos a cumplir. Debe permitirnos expresar un sistema de forma gráfica que facilite su comprensión
+por parte de otros, así como poder especificar las características del sistema. A partir de un modelo UML, debemos poder construir
+el sistema diseñado, modelos los cuales pueden servir como documentación.
 
+Al ser un sistema de modelos, UML también nos permite, por ejemplo, diseñar flujos de trabajo. Los elementos clave de UML son
+los conocidos como Bloques de construcción, entre los que distinguimos:
+
+- Elementos: son abstracciones de cosas reales o ficticias
+
+- Relaciones: relacionan los elementos entre si
+
+- Diagramas: son colecciones de los dos anteriores
+
+Los diagramas merecen especial mención, ya que finalmente son los elementos que nos van a permitir comprender el sistema. 
+Existen diferentes tipos de diagramas: Diagrama de secuencia: representa la interacción entre los diferentes objetos que 
+componen el sistema.
+
+- Diagrama de clases: representa un conjunto de clases y sus relaciones. Es el más habitual para describir el diseño de 
+sistemas orientados a objetos.
+
+![Diagrama de clases](../images/3.4diagramaClass.png) 
+
+- Diagrama de casos de uso: los casos de uso son supuestos con el sistema a desarrollar, lo que debe hacer un sistema y cómo.
+
+![Diagrama de casos de uso](../images/3.5diagramaCasoUso.png) 
+
+- Diagrama de secuencia: representa la interacción entre los diferentes objetos que componen el sistema.
+
+![Diagrama de secuencia](../images/3.6diagramaSecuencia.png) 
+
+[Ir al indice](#top)
