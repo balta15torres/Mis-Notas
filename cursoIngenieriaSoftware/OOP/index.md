@@ -5,20 +5,22 @@
 |[OOP](#oop)|
 |---
 |[Comportamiento de un objeto](#comportamiento-de-un-objeto)
-|[Métodos constructores](#métodos-constructores)
 |[Diagrama de clases](#diagrama-de-clases)
+|[Métodos constructores](#métodos-constructores)
+|[Atributos y métodos](#atributos-y-métodos)
 |[Encapsulamiento](#encapsulamiento)
 |[Herencia](#herencia)
 |[Análisis orientado a objetos (UML)](#análisis-orientado-a-objetos-UML)
 
 ## RECUERDA
+> - En la programación orientada a objetos, el sistema se divide en objetos o entidades que podemos encontrar en la realidad.
 > - Por protección de nuestros objetos, no es convenientemente que sus datos miembros o estado, sean accesibles de cualquier 
 > forma y en cualquier momento.
 > - El comportamiento de un objeto viene definido por la serie de procedimientos o funciones que definimos éste puede desarrollar.
 > - El UML surge de la necesidad de un lenguaje que no sólo comunique las ideas a otros desarrolladores, sino para que también 
 > sirviera de apoyo a la hora de analizar los distintos problemas que surgen a lo largo de la fase de desarrollo de un proyecto software. 
 > - Los métodos constructores son un tipo de específico de método que siempre tiene el mismo nombre de la clase y se utiliza para 
-> construir objetos de esa clase.
+> construir objetos de esa clase. Los métodos destructores se encargan de liberar la memoria de los objetos.
 
 ## OOP
 En la programación orientada a objetos, el sistema se divide en objetos o entidades que podemos encontrar en la realidad.
@@ -58,6 +60,14 @@ asociadas al objeto. A continuación explicaremos más extensamente el concepto 
 
 [Ir al indice](#top)
 
+### Diagrama de clases
+Sirve para visualizar las relaciones entre las clases que involucran el sistema, las cuales pueden ser asociativas, de herencia, 
+de uso y de contenimiento. Una vez creada la clase diagrama podemos empezar a crear elementos: clases, etc… en ella.
+
+![Diagrama de clases](../images/3.2diagramaClass.png) 
+
+[Ir al indice](#top)
+
 ### Métodos constructores
 Son un tipo específico de método que siempre tiene el mismo nombre de la clase y se utiliza para construir objetos de esa clase.
 
@@ -82,11 +92,13 @@ objeto.
 
 [Ir al indice](#top)
 
-### Diagrama de clases
-Sirve para visualizar las relaciones entre las clases que involucran el sistema, las cuales pueden ser asociativas, de herencia, 
-de uso y de contenimiento. Una vez creada la clase diagrama podemos empezar a crear elementos: clases, etc… en ella.
+### Atributos y métodos
+- Los atributos son los datos que hacen referencia al estado de un objeto, o lo que es lo mismo, a las variables que lo pueden 
+componer. Los objetos pueden contener cualquier número de atributos, según las necesidades que tengamos al crearlo.
 
-![Diagrama de clases](../images/3.2diagramaClass.png) 
+- Los métodos son las diferentes funciones que pueden aplicarse desde el objeto, en el caso del ejemplo sería Acelerar y Frenar. 
+Pueden o no modificar los atributos de la clase, según lo definamos. Diferentes procedimientos pueden formar parte de nuestro 
+objeto, devolviendo valores, leyendo o modificando atributos, etc.
 
 [Ir al indice](#top)
 

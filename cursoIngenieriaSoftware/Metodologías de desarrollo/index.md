@@ -17,7 +17,9 @@
 >  - Un lenguaje de programación es un idioma artificial diseñado para expresar procesos que pueden ser llevadas a cabo por
 > máquinas como las computadoras.
 > - Para escribir programas que proporcionen los mejores resultados, cabe tener en cuenta una serie de detalles:   
->   - Portabilidad: capacidad de poder ejecutarse en una plataforma, ya sea hardware o software, diferente a aquella en la que se elaboró.
+> - Portabilidad: capacidad de poder ejecutarse en una plataforma, ya sea hardware o software, diferente a aquella en la que se elaboró.
+> - UML en primera instancia es independiente del proceso de desarrollo que se siga. Aun así, los mismos creadores de UML
+> recomiendan una metodología de desarrollo denominada Proceso Unificado de Desarrollo.
 
 ### ¿Que es la metodología de desarrollo?
 Una metodología de desarrollo de software se refiere a un framework que es usado para estructurar, planear y controlar el
