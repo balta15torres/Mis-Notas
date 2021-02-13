@@ -147,7 +147,7 @@ a la vez, un conflicto, ya que el método Acelerar() lo tiene definido dos veces
 [Ir al indice](#top)
 
 ### Análisis orientado a objetos (UML)
-[UML](https://github.com/balta15torres/Mis-Notas/blob/master/cursoIngenieriaSoftware/Metodologi%CC%81as%20de%20desarrollo/index.md#lenguaje-uml)  
+[UML](https://github.com/balta15torres/Mis-Notas/blob/master/cursoIngenieriaSoftware/Metodologi%CC%81as%20de%20desarrollo/index.md#lenguaje-uml) 
 tiene unos objetivos básicos a cumplir. Debe permitirnos expresar un sistema de forma gráfica que facilite su comprensión
 por parte de otros, así como poder especificar las características del sistema. A partir de un modelo UML, debemos poder construir
 el sistema diseñado, modelos los cuales pueden servir como documentación.
