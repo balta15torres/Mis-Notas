@@ -11,6 +11,8 @@
 |[Encapsulamiento](#encapsulamiento)
 |[Herencia](#herencia)
 |[Análisis orientado a objetos (UML)](#análisis-orientado-a-objetos-UML)
+|[Actores en UML](#actores-en-uml)
+|[Estereotipos UML](#estereotipos-uml)
 
 ## RECUERDA
 > - En la programación orientada a objetos, el sistema se divide en objetos o entidades que podemos encontrar en la realidad.
@@ -21,7 +23,9 @@
 > sirviera de apoyo a la hora de analizar los distintos problemas que surgen a lo largo de la fase de desarrollo de un proyecto software. 
 > - Los métodos constructores son un tipo de específico de método que siempre tiene el mismo nombre de la clase y se utiliza para 
 > construir objetos de esa clase. Los métodos destructores se encargan de liberar la memoria de los objetos.
-
+> - En UML todos los actores deben tener nombres de acuerdo al rol asumido. Por ejemplo unos nombres de actores podrían ser:
+    Cliente web, Empleado, Pasajero, etc…
+>
 ## OOP
 En la programación orientada a objetos, el sistema se divide en objetos o entidades que podemos encontrar en la realidad.
 
@@ -189,5 +193,49 @@ sistemas orientados a objetos.
 - Diagrama de secuencia: representa la interacción entre los diferentes objetos que componen el sistema.
 
 ![Diagrama de secuencia](../images/3.6diagramaSecuencia.png) 
+
+[Ir al indice](#top)
+
+### Actores en UML
+Un actor en UML es definido como un rol de usuario que interactúa con el sistema mediante un caso de uso. Debemos de saber
+que la palabra rol no identifica necesariamente a una persona en particular, si no que identifica una labor que se realiza frente al
+sistema. Por eso estos actores pueden ser personas reales (empleados, usuarios), otros equipos o un evento externo.
+
+Los actores pueden ser clasificados en varios tipos según sus funciones en el sistema:
+
+- Primarios: son actores que explotan la funcionalidad del sistema, interactuando y trabajando frecuentemente y cuya actividad
+resulta esencial para el mismo. Por lo general, estos actores siempre necesitarán un caso de uso.
+
+- Secundarios: son actores que, aunque no explotan directamente el sistema con funciones esenciales, son necesarios para que
+los primarios puedan hacerlo. Generalmente, estos actores, aunque están implicados en casos de uso, no son beneficiarios de
+las acciones de ninguno.
+
+Diversos autores consideran la existencia o clasificación de otros posibles actores que no aparece en UML, como por ejemplo los
+iniciadores, que se definen como actores que sólo sirven para desencadenar tareas.
+
+> La representación gráfica de los actores se realiza mediante el “Stick Man” o icono de hombre, este icono contiene el nombre del
+  actor. El nombre de los actores deben seguir las directrices en función del tipo de clase. Los nombres de los actores abstractos
+  deben de ir en letra cursiva.
+
+![Representación gráfica de los actores](../images/5.2representaciónActor.png) 
+
+[Ir al indice](#top)
+
+### Estereotipos UML
+Con la finalidad de proporcionar información adicional para los desarrolladores o la máquina, se pueden agregar perfiles que
+permiten extender el UML para crear nuevos modelos de elementos, derivados de elementos existentes, pero con propiedades
+específicas que sirvan para un problema particular o un uso concreto. A esto se le llama estereotipo. Por ejemplo, cuando
+modelamos una red, necesitamos tener símbolos que representen routers y hubs.
+
+Un estereotipo no puede ser usado por si solo, sino que siempre debe ir acompañado de una clase de las que se extiende. No
+pueden expresarse estereotipos entre sí. Usan la misma notación que una clase, pero con la palabra clave <> mostrada encima del
+nombre. Con los estereotipos, podemos cambiar la apariencia gráfica de un elemento de modelo extendido, usando iconos
+representados en el perfil de clase Image. Como un estereotipo es una clase, puede tener propiedades, a las que nos referiremos
+como etiquetas de definición. Cuando se aplica un estereotipo a un modelo de elemento, nos referimos a los valores de las
+propiedades como valores etiquetados.
+
+En esencia, un estereotipo representa una distinción en su uso, pudiendo ser aplicado sobre cualquier elemento modelado, como
+clases, paquetes, herencias, etc. Se modela una clase patrón con un estereotipo paramétrico, lo que significa que puede contener
+parámetros.
 
 [Ir al indice](#top)
