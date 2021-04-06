@@ -115,7 +115,7 @@ adecuada para usuarios concretos.
 
 [Ir al indice](#top)
 
-#### Objetivo del diseño centrado en el Usuario
+### Objetivo del diseño centrado en el Usuario
 El objetivo de esta filosofía es ofrecer respuesta a preguntas como ¿quién usará este sistema?, ¿qué es lo que va a hacer con él? 
 ó ¿qué información necesitará para alcanzar sus objetivos?. 
 
