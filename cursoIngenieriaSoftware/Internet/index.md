@@ -4,8 +4,8 @@
 ## Índice de contenidos
 |Internet|
 |---
-|[¿Que proporciona internet?](#que-propociona-internet)
-|[Estructura Cliente/Servidor](#estrucura-cliente-servidor)
+|[¿Que proporciona internet?](#que-proporciona-internet)
+|[Estructura Cliente/Servidor](#estructura-clienteservidor)
 |[Ingeniería del lado del cliente](#ingeniería-del-lado-del-cliente)
 |[Ingeniería del lado del servidor](#ingeniería-del-lado-del-servidor)
 
